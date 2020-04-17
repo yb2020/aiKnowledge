@@ -25,7 +25,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: "blog made by 隔壁老易",
+    title: "ai cms",
     titleTemplate: "%s",
     meta: [
       {
