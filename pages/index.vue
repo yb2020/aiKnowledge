@@ -1,201 +1,179 @@
 <template>
   <div class="sitemap" :class="{'mobile': mobileLayout}">
+    <div class="banner">知识就是力量</div>
 
-    <div class="searchPanel">
+    <div class="topContent">
       <div class="left">
-        <div class="title">Research more, search less</div>
-        <el-row>
-          <el-col :span="20">
-            <el-input
-            v-model="searchValue"
-            style="width: 100%;"
-            placeholder="Search any topic, author, journal, etc. or any combination of these"
-            clearable
-             />
-          </el-col>
-          <el-col :span="4" align="center">
-            <el-button icon="el-icon-search" @click="search"></el-button>
-          </el-col>
-        </el-row>
-      </div>
+        <h4 class="title">论文收录</h4>
+        <div class="content">
+          <el-card class="box-card">
+            <div class="item" @click="forward('Publications')">
+              <div class="icon"><i class="el-icon-document" /></div>
+              <div class="rightText">
+                <div class="number">233,467,597</div>
+                <div class="text">论文</div>
+              </div>
+            </div> 
+          </el-card>
 
+          <el-card class="box-card">
+            <div class="item" @click="forward('Authors')">
+              <div class="icon"><i class="el-icon-user-solid" /></div>
+              <div class="rightText">
+                <div class="number">238,949,598</div>
+                <div class="text">作者</div>
+              </div>
+            </div>
+          </el-card>
+
+        </div>
+
+        <div class="content">
+          <el-card class="box-card">
+            <div class="item" @click="forward('Topics')">
+              <div class="icon"><i class="el-icon-s-help" /></div>
+              <div class="rightText">
+                <div class="number">710,937</div>
+                <div class="text">会议</div>
+              </div>
+            </div>
+          </el-card>
+        
+          <el-card class="box-card">
+             <div class="item" @click="forward('Journals')">
+              <div class="icon"><i class="el-icon-location" /></div>
+              <div class="rightText">
+                <div class="number">4,456</div>
+                <div class="text">期刊</div>
+              </div>
+            </div>
+          </el-card>
+        </div>
+
+        <div class="content">
+          <el-card class="box-card">
+             <div class="item" @click="forward('Journals')">
+                <div class="icon"><i class="el-icon-notebook-1" /></div>
+                <div class="rightText">
+                  <div class="number">48,858</div>
+                  <div class="text">学科</div>
+                </div>
+              </div>
+          </el-card>
+
+          <el-card class="box-card">
+            <div class="item" @click="forward('Institutions')">
+              <div class="icon"><i class="el-icon-school" /></div>
+              <div class="rightText">
+                <div class="number">25,562</div>
+                <div class="text">大学</div>  
+              </div>
+            </div>
+          </el-card>
+        </div>
+
+      </div>
       <div class="right">
-        <div class="item" @click="forward('Publications')">
-          <div class="icon"><i class="el-icon-document" /></div>
-          <div class="rightText">
-            <div class="number">233,467,597</div>
-            <div class="text">Publications</div>
+        <div class="label">学术动态</div>
+
+        <div class="news">
+          <div class="title"><span class="text"><i class="el-icon-s-help"></i>近期会议</span><span class="more"><a href="#">更多动态>></a></span></div>
+          <div class="content">
+            <ul>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+            </ul>
           </div>
         </div>
-        <div class="item" @click="forward('Authors')">
-          <div class="icon"><i class="el-icon-user-solid" /></div>
-          <div class="rightText">
-            <div class="number">238,949,598</div>
-            <div class="text">Authors</div>
-          </div>
-        </div>
-        <div class="item" @click="forward('Topics')">
-          <div class="icon"><i class="el-icon-s-help" /></div>
-          <div class="rightText">
-            <div class="number">710,937</div>
-            <div class="text">Topics</div>
-          </div>
-        </div>
-        <div class="item" @click="forward('Journals')">
-          <div class="icon"><i class="el-icon-location" /></div>
-          <div class="rightText">
-            <div class="number">4,456</div>
-            <div class="text">Conferences</div>
-          </div>
-        </div>
-        <div class="item" @click="forward('Journals')">
-          <div class="icon"><i class="el-icon-notebook-1" /></div>
-          <div class="rightText">
-            <div class="number">48,858</div>
-            <div class="text">Journals</div>
-          </div>
-        </div>
-        <div class="item" @click="forward('Institutions')">
-          <div class="icon"><i class="el-icon-school" /></div>
-          <div class="rightText">
-            <div class="number">25,562</div>
-            <div class="text">Institutions</div>  
+
+        <div class="news">
+          <div class="title"><span class="text"><i class="el-icon-news"></i>新闻</span><span class="more"><a href="#">更多动态>></a></span></div>
+          <div class="content">
+            <ul>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="content">
-      <el-row style="width: 100%" :gutter="24">
-        <el-col :span="12">
-          <el-card class="box-card">
-
-            <div slot="header" class="clearfix">
-              <i class="el-icon-user-solid" />
-              <span>Top Authors in Biology</span>
-              <el-button style="float: right; padding: 3px 0" type="text">Items are sorted by saliency. ?</el-button>
-            </div>
-            <div class="text item">
-              <ul>
-                <ol><a href="#">1. Douglas G. Altman</a></ol>
-                <ol><a href="#">2. Walter C. Willett</a></ol>
-                <ol><a href="#">3. Ahmedin Jemal</a></ol>
-                <ol><a href="#">4. Hagop M. Kantarjian</a></ol>
-                <ol><a href="#">5. Patrick W. Serruys</a></ol>
-                <ol><a href="#">6. Gregory Y.H. Lip</a></ol>
-                <ol><a href="#">7. Salim Yusuf</a></ol>
-                <ol><a href="#">8. JoAnn E. Manson</a></ol>
-                <ol><a href="#">9. Christopher J L Murray</a></ol>
-                <ol><a href="#">10. Frank B. Hu</a></ol>
-                <ol><a href="#">11. Gordon H. Guyatt</a></ol>
-                <ol><a href="#">12. Stephan Windecker</a></ol>
-                <ol><a href="#">13. Harlan M. Krumholz</a></ol>
-                <ol><a href="#">14. Eric D. Peterson</a></ol>
-                <ol><a href="#">15. Deepak L. Bhatt</a></ol>
-              </ul>
-            </div>
-          </el-card>
-
-        </el-col>
-        <el-col :span="12">
-          
-          <el-card class="box-card">
-
-            <div slot="header" class="clearfix">
-              <i class="el-icon-school" />
-              <span>Top Institutions in Medicine</span>
-              <el-button style="float: right; padding: 3px 0" type="text">Items are sorted by saliency. ?</el-button>
-            </div>
-            <div class="text item">
-              <ul>
-                <ol><a href="#">1. Max Planck Society</a></ol>
-                <ol><a href="#">2. University of São Paulo</a></ol>
-                <ol><a href="#">3. University of Liège</a></ol>
-                <ol><a href="#">4. Harvard University</a></ol>
-                <ol><a href="#">5. PNational Autonomous University of Mexico</a></ol>
-                <ol><a href="#">6. University of Paris</a></ol>
-                <ol><a href="#">7. Centre national de la recherche scientifique</a></ol>
-                <ol><a href="#">8. University of Oxford</a></ol>
-                <ol><a href="#">9. Complutense University of Madrid</a></ol>
-                <ol><a href="#">10. University of Cambridge</a></ol>
-                <ol><a href="#">11. Spanish National Research Council</a></ol>
-                <ol><a href="#">12. École Normale Supérieure</a></ol>
-                <ol><a href="#">13. State University of Campinas</a></ol>
-                <ol><a href="#">14. Federal University of Rio de Janeiro</a></ol>
-                <ol><a href="#">15. Autonomous University of Barcelona</a></ol>
-              </ul>
-            </div>
-          </el-card>
-
-        </el-col>
-      </el-row>
- 
+    <div class="pointerContent">
+      <div class="item">
+        <div class="imgInfo">
+          <i class="el-icon-picture-outline image"></i>
+          <div class="info">
+            <div>作者：何开明</div>
+            <div>期刊：XX</div>
+          </div>
+        </div>
+        <div class="summary">
+          <div class="title">深度残差学习用于图像识别</div>
+          <div class="content">
+            更深的神经网络更难训练。我们提出了一种残差的学习框架，以简化比以前使用的网络更深入的网络训练。我们显式地将层重新配置为参考层输入学习剩余函数，而不是学习未参考函数。我们提供了全面的经验证据，表明这些残差网络更易于优化，并且可以通过大大增加的深度来获得准确性。
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="imgInfo">
+          <i class="el-icon-picture-outline image"></i>
+          <div class="info">
+            <div>作者：何开明</div>
+            <div>期刊：XX</div>
+          </div>
+        </div>
+        <div class="summary">
+          <div class="title">深度残差学习用于图像识别</div>
+          <div class="content">
+            更深的神经网络更难训练。我们提出了一种残差的学习框架，以简化比以前使用的网络更深入的网络训练。我们显式地将层重新配置为参考层输入学习剩余函数，而不是学习未参考函数。我们提供了全面的经验证据，表明这些残差网络更易于优化，并且可以通过大大增加的深度来获得准确性。
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <div class="content">
-      <el-row style="width: 100%" :gutter="24">
-        <el-col :span="12">
-          <el-card class="box-card">
 
-            <div slot="header" class="clearfix">
-              <i class="el-icon-notebook-1" />
-              <span>Top Journals in Art</span>
-              <el-button style="float: right; padding: 3px 0" type="text">Items are sorted by saliency. ?</el-button>
-            </div>
-            <div class="text item">
-              <ul>
-                <ol><a href="#">1. Nature</a></ol>
-                <ol><a href="#">2. Science</a></ol>
-                <ol><a href="#">3. Leonardo</a></ol>
-                <ol><a href="#">4. Studies in Conservation</a></ol>
-                <ol><a href="#">5. The Journal of Aesthetics and Art Criticism</a></ol>
-                <ol><a href="#">6. American Journal of Archaeology</a></ol>
-                <ol><a href="#">7. TDR</a></ol>
-                <ol><a href="#">8. Screen</a></ol>
-                <ol><a href="#">9. Music & Letters</a></ol>
-                <ol><a href="#">10. Film Quarterly</a></ol>
-                <ol><a href="#">11. Performance Research</a></ol>
-                <ol><a href="#">12. October</a></ol>
-                <ol><a href="#">13. Sight and Sound</a></ol>
-                <ol><a href="#">14. British Journal of Aesthetics</a></ol>
-                <ol><a href="#">15. African Arts</a></ol>
-              </ul>
-            </div>
-          </el-card>
-
-        </el-col>
-        <el-col :span="12">
-          
-          <el-card class="box-card">
-
-            <div slot="header" class="clearfix">
-              <i class="el-icon-location" />
-              <span>Top Conferences in Art</span>
-              <el-button style="float: right; padding: 3px 0" type="text">Items are sorted by saliency. ?</el-button>
-            </div>
-            <div class="text item">
-              <ul>
-                <ol><a href="#">1. ICMC</a></ol>
-                <ol><a href="#">2. SIGGRAPH</a></ol>
-                <ol><a href="#">3. Arts</a></ol>
-                <ol><a href="#">4. IDEAS</a></ol>
-                <ol><a href="#">5. DiGRA</a></ol>
-                <ol><a href="#">6. DigitalHeritage</a></ol>
-                <ol><a href="#">7. Globe</a></ol>
-                <ol><a href="#">8. CSR</a></ol>
-                <ol><a href="#">9. RIG</a></ol>
-                <ol><a href="#">10. Eurographics</a></ol>
-                <ol><a href="#">11. AMSF</a></ol>
-                <ol><a href="#">12. ICCC</a></ol>
-                <ol><a href="#">13. RASI</a></ol>
-                <ol><a href="#">14. C&C</a></ol>
-                <ol><a href="#">15. CAIDCD</a></ol>
-              </ul>
-            </div>
-          </el-card>
-
-        </el-col>
-      </el-row>
+    <div class="communityContent">
+      <div class="title">社区热点追踪</div>
+      <div class="content">
+        <div class="item">
+          <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
+          <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+          <div class="link">
+            <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+            <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+            <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+            <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+            <div class="time">刚刚</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
+          <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+          <div class="link">
+            <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+            <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+            <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+            <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+            <div class="time">1天前</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
+          <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+          <div class="link">
+            <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+            <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+            <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+            <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+            <div class="time">2天前</div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -383,266 +361,241 @@ export default {
 .sitemap {
   margin: 0 auto;
 
-  .searchPanel {
+  .banner {
     width: 90rem;
     margin: auto;
+    height: 5rem;
+    background: $blue ;
+    font-size: 20px ;
+    text-align: center ;
+    align-content: center ;
+    line-height: 5rem ;
+    color: #FFFFFF ;
+  }
+
+  .topContent {
+    margin:auto ;
+    margin-top: 10px ;
+    width: 90rem;
     display: flex;
     display: -webkit-flex; /* Safari */
     justify-content: space-around;
     .left {
-      width: 45rem;
-      padding: 10rem 20px;
+      width: 44rem;
+      padding: 10px;
+      background-color: #FFFFFF;
+      
       .title {
         color: $blue;
-        font-size: 3rem;
-        padding-bottom: 1rem;
+        font-size: 16px;
+        padding-bottom: 8px;
+      }
+
+      .content {
+        border: 0px ;
+        margin-top: 10px;
+        width: auto;
+        display: flex;
+        display: -webkit-flex; /* Safari */
+        justify-content: space-around;
+
+        .box-card {
+          width: 50% ;
+          margin: 0px 10px ;
+        }
+
+        .item {
+          background: #ffffff;
+          width: 100%;
+          height: 20%;
+          border-bottom: 1px solid #f0f0f0;
+          display: flex;
+          display: -webkit-flex; /* Safari */
+          justify-content: left;
+          .icon {
+            padding: 14px;
+            i {
+              font-size: 3em;
+              color: $blue;
+              vertical-align: middle;
+            }
+          }
+          .rightText {
+            padding-top: 10px;
+
+            .number {
+              font-size: 1.5rem;
+            }
+            .text {
+              font-size: 0.8rem;
+              font-style: italic;
+            }
+          }
+        }
+        .item:hover {
+          background: #f9f9f9;
+          cursor: pointer;
+        }
+
       }
     }
     .right {
-      width: 20rem;
-      background: #000;
-      z-index: 1000;
-      .item {
-        background: #ffffff;
-        width: 100%;
-        height: 20%;
-        border-bottom: 1px solid #f0f0f0;
-        display: flex;
-        display: -webkit-flex; /* Safari */
-        justify-content: left;
-        .icon {
-          padding: 20px;
-          i {
-            font-size: 2.5em;
-            vertical-align: middle;
-          }
-        }
-        .rightText {
-          padding-top: 10px;
+      width: 44rem;
+      background: #ffffff;
 
-          .number {
-            font-size: 2rem;
-          }
-          .text {
-            font-size: 1rem;
-            font-style: italic;
+      .label {
+        background: $blue;
+        font-size: 14px ;
+        color: #FFFFFF ;
+        padding: 10px ;
+      }
+
+      .news {
+        padding: 10px ;
+
+        .title {
+          font-size: 14px ;
+          color: #333333 ;
+          padding: 10px ;
+          border-bottom: 1px solid #f0f0f0 ;
+          display: flex;
+          display: -webkit-flex; /* Safari */
+          justify-content: space-between;
+          .more {
+            a {
+              color: $blue;
+            }
           }
         }
-      }
-      .item:hover {
-        background: #f9f9f9;
-        cursor: pointer;
+
+        .content {
+          width: auto ;
+          padding: 10px ;
+
+          li {
+            padding: 2px 0px ;
+
+            a {
+              color: #333333 ;
+              display: flex;
+              display: -webkit-flex; /* Safari */
+              justify-content: space-between;
+
+              .time {
+                color: #999 ;
+                font-style: italic ;
+              }
+            }
+
+            a:hover { 
+              color: #ff0000 ;
+              text-decoration: underline;
+            }
+          }
+        }
       }
     }
   }
 
-  .content {
+  .pointerContent {
+    margin:auto ;
+    margin-top: 10px ;
     width: 90rem;
-    margin: auto;
     display: flex;
     display: -webkit-flex; /* Safari */
-    justify-content: left;
-    font-size: 16px;
-    border-top: 1px solid #f0f0f0;
-    padding: 10px;
+    justify-content: space-around;
+    .item {
+      width: 44rem;
+      padding: 10px;
+      background-color: #FFFFFF;
+      display: flex;
+      display: -webkit-flex; /* Safari */
+      justify-content: space-between;
+      .imgInfo {
+        width: 10rem;
+        .image {
+          width: 10rem ;
+          height: 8rem ;
+          border: 1px solid #f0f0f0;
+          border-radius: 4px;
+          font-size: 8rem;
+          color: #aaaaaa ;
+        }
+        .info {
+          font-size: 14px;
+          padding-top: 10px ;
+          div {
+            line-height: 24px ;
+          }
+        }
+      }
+      .summary {
+        width: 33rem;
+        padding-left: 1rem ;
 
-    .content a {
-      font-size: 14px ;
-      color: #333 ;
-    }
-    .content a:hover {
-      color: $blue ;
-    }
-  }
-
-  >.title {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0rem;
-    line-height: 1.5rem;
-    color: $black;
-    font-size: 1rem;
-    font-weight: normal;
-
-    > p {
-      position: relative;
-      padding-right: $lg-pad;
-      background: $white;
-      z-index: 99;      
-    }
-
-    > .line {
-      top: 50%;
-    }
-
-    &.sitemap-article {
-      margin-top: 1rem;
-    }
-  }
-
-  &.mobile {
-    width: 100%;
-    transform: translate(0);
-    
-    .sitemap-article-list {
-      padding: .8rem;
-
-      .month-list {
-        margin: .8rem;
-
-
-        .sitemap-list {
-          padding: .4rem .8rem;
+        .title {
+          font-size: 16px ;
+          font-weight: bolder;
+        }
+        .content {
+          padding: 5px ;
+          text-indent: 28px;
+          font-size: 14px;
+          line-height: 24px;
         }
       }
     }
-
-    >.tag {
-      padding: .8rem;
-    }
   }
 
-  .sitemap-article-list {
-    padding: 1rem;
+  .communityContent {
+    margin:auto ;
+    margin-top: 10px ;
+    width: 90rem;
 
-    .year-name {
-      font-size: 1.5rem;
+    .title {
+      background: $blue ;
+      text-align: center ;
+      color: #FFFFFF ;
+      padding: 10px 0px ;
     }
+    .content {
+      background: #FFFFFF ;
+      .item {
+        padding: 10px ;
+        border-bottom: 1px solid #f0f0f0 ;
 
-    .month-list {
-      margin: 1rem 2rem;
-
-      .month-name {
-        margin-bottom: .5rem;
-      }
-
-      .sitemap-list {
-        padding: .5rem 2rem;
-
-        article {
-          position: relative;
+        .communityTitle {
+          text-align: left;
+          color: #333333 ;
+          font-size: 16px ;
+          font-weight: bolder;
+          padding: 0px ;
+          padding-top: 10px ;
+        }
+        .text {
+          padding: 10px 0px ;
+        }
+        .link {
+          font-size: 12px ;
+          color: #888 ;
           display: flex;
           align-items: center;
-          height: 5rem;
-          line-height: 1.8rem;
-
-          &::before {
-            content: " ";
-            position: absolute;
-            left: 0px;
-            top: 2.3rem;
-            width: 6px;
-            height: 6px;
-            margin-left: -4px;
-            background: $dividers;
-            border-radius: 50%;
+          i {
+            font-size: 12px ;
           }
-
-          time {
-            margin-left: .5rem;
-            color: $dividers;
-            font-size: $font-size-small;
-            width: 6rem;
-          }
-
-          a {
-            width: 70%;
-            margin-left: $md-pad;
-            text-decoration: none;
-            color: $black;
-            //@include text-overflow();
-          }
-          
-          a:hover {
-            width: 70%;
-            margin-left: $md-pad;
-            text-decoration: underline;
-            color: $black;
-            //@include text-overflow();
-          }
-
-          span {
-            margin-left: .8rem;
-            color: $red;
-
-            &.tag {
-              cursor: pointer;
-              color: $blue;
-            }
+          .time {
+            display: inline;
+            padding-left: 10px ;
           }
         }
       }
-    }
 
-    .sitemap-item {
-      padding: 1rem;
-
-      article {
-        position: relative;
-        display: flex;
-        align-items: center;
-        height: 20px;
-        line-height: 20px;
-
-        &::before {
-          content: " ";
-          position: absolute;
-          left: 0px;
-          top: 6px;
-          width: 6px;
-          height: 6px;
-          margin-left: -4px;
-          background: $dividers;
-          border-radius: 50%;
-        }
-
-        time {
-          width: 2.3rem;
-
-          margin-left: $md-pad;
-          color: $dividers;
-          font-size: $font-size-small;
-        }
-
-        a {
-          margin-left: $md-pad;
-          text-decoration: underline;
-          color: $black;
-          @include text-overflow();
-          width: 70%;
-        }
-
-          span {
-            margin-left: .8rem;
-            color: $red;
-
-            &.tag {
-              cursor: pointer;
-              color: $blue;
-            }
-          }
+      .item:hover {
+        background: #f0f0f0;
       }
     }
   }
 
-  >.tag {
-
-    >.tag-item {
-      float: left;
-      margin: .3rem;
-
-      >a {
-        display: block;
-        padding: .4rem;
-        color: $black;
-
-        &:hover {
-          color: $black;
-        }
-      }
-    }
-  }
 }
 
 </style>

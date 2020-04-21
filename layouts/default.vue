@@ -119,6 +119,7 @@ export default {
 <style lang="scss" scoped>
 
 .app {
+  background-color: #f0f0f0 ;
   >.app-aside {
     position: fixed;
     top: 0;

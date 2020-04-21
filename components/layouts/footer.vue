@@ -95,7 +95,7 @@ footer {
 
   >.container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 
     &.center {
       justify-content: center;

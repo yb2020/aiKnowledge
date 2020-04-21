@@ -39,25 +39,24 @@
               </div>
             </div>
           </nav>
+          <div class="search">
+              <el-input
+              v-model="keyword"
+              style="width: 100%;"
+              placeholder="搜索学术、作者、学科、机构等"
+              clearable
+              >                
+                <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
+              </el-input>
+          </div>
+          
         </div>
 
       <div class="header-right">
-        <div
-          class="search-box"
-          @click="open = true"
-          v-click-outside="hide"
-          key="1">
-          <div class="search" :class="{'open': open}">
-            <input
-              type="text"
-              v-model="keyword"
-              placeholder="search..."
-              ref="search"
-              @keyup.enter="search" 
-              />
-            <div class="eks" @click.stop="search"></div>
-          </div>
-        </div>
+        <el-button-group>
+          <el-button size="small">注册</el-button>
+          <el-button size="small" icon="el-icon-user">登录</el-button>
+        </el-button-group>
       </div>
 
     </div>
@@ -102,11 +101,7 @@ export default {
       if(navList && navList.length > 0) {
         this.navArray = []
         navList.forEach(nav => {
-          var navName = ""
-          if(nav.name) {
-            navName = nav.name.split("|")[1]
-          }
-          this.navArray.push({path: nav.url, name: navName, target: nav.target, icon: 'iconfont icon-read'})
+          this.navArray.push({path: nav.url, name: nav.name, target: nav.target, icon: 'iconfont icon-read'})
         })
       }
       return this.navArray
@@ -142,14 +137,8 @@ export default {
       this.open = false
     },
 
-    search () {
-      if (!this.open) {
-        this.open = true
-        return
-      }
-      this.$router.push(`/search/${this.keyword}`)
-      this.open = false
-      this.keyword = ''
+    search() {
+      this.$router.push(`/search/${this.searchValue}`)
     },
 
     togglePlay() {
@@ -242,9 +231,11 @@ header {
     transform: translateY(-100%);
   }
 
+  /*
   &.darken {    
     @include box-shadow(0, 1px, 2px, rgba(0,0,0,.05));
   }
+  */
 
   >.header {
     position: relative;
@@ -322,6 +313,10 @@ header {
 
   .header-right {
     width: 200px;
+  }
+
+  .search {
+    width: 35rem ;
   }
 
   .search-box {
