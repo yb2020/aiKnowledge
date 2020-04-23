@@ -243,14 +243,15 @@ header {
     justify-content: space-between;
     align-items: center;
     min-width: $container-width;
-    padding: 0 $lg-pad;
+    //padding: 0 $lg-pad;
+    padding: 0 1rem;
     line-height: $header-height;
 
     >.header-left {
       display: flex;
 
       >.logo{
-        padding: 10px 0px 0px 20px ;
+        padding: 10px 0px 0px 0px ;
 
         a {
           color: $black;
@@ -308,11 +309,14 @@ header {
 
     a.link-active {
       color: $blue;
+      border-bottom: 2px solid var(--theme-primary);
+      padding-bottom: 2px;
     }
   }
 
   .header-right {
-    width: 200px;
+    //width: 200px;
+    align-content: center;
   }
 
   .search {
