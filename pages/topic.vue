@@ -82,6 +82,62 @@
             </div>
           </div>
           
+          <div class="topic">
+            <div class="text">
+              <b>话题2：</b>XXXXX间的内洽性是不是丧失了？
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="avatar">
+              <img src="@/static/images/1587433534602.jpg" />
+            </div>
+            <div class="commentContent">
+              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
+                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+                <div class="link">
+                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+                  <div class="time">刚刚</div>
+                </div>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="avatar">
+              <img src="@/static/images/1587433534602.jpg" />
+            </div>
+            <div class="commentContent">
+              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
+                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+                <div class="link">
+                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+                  <div class="time">刚刚</div>
+                </div>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="avatar">
+              <img src="@/static/images/1587433534602.jpg" />
+            </div>
+            <div class="commentContent">
+              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
+                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+                <div class="link">
+                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+                  <div class="time">刚刚</div>
+                </div>
+            </div>
+          </div>
         </div>
 
         <div class="item">
@@ -92,7 +148,7 @@
           </div>
           <div class="topic">
             <div class="text">
-              <b>话题2：</b>文中空间场的作用力，是按张量计算的，那么N维空间的内洽性是不是丧失了？
+              <b>话题1：</b>文中空间场的作用力，是按张量计算的，那么N维空间的内洽性是不是丧失了？
             </div>
           </div>
 
@@ -157,7 +213,7 @@
           </div>
           <div class="topic">
             <div class="text">
-              <b>话题4：</b>文中空间场的作用力，是按张量计算的，那么N维空间的内洽性是不是丧失了？
+              <b>话题1：</b>文中空间场的作用力，是按张量计算的，那么N维空间的内洽性是不是丧失了？
             </div>
           </div>
 
