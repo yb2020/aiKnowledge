@@ -6,7 +6,8 @@
  * @returns 返回处理后的时间格式
  */
 export function dateFormat(times, format) {
-  let time = Date.parse(times);
+  // let time = Date.parse(times);
+  let time = new Date(times)
   const between = (Date.now() - Number(time)) / 1000
   if (between < 3600 && ((between / 60) < 1)) {
     return '刚刚'

@@ -155,3 +155,31 @@ export function getNav (params) {
     params: null
   }).then(res => res.data).catch(err => console.error(err))
 }
+
+
+//#######知识图谱########
+// 提交知识图谱话题和评价
+export function postDiscuss (data) {
+  return serviceApi({
+    url: serviceId + `/discuss/postDiscuss`,
+    method: 'post',
+    data: data
+  }).then(res => res.data).catch(err => console.error(err))
+}
+// 获取知识图谱话题
+export function getTopics (data) {
+  return serviceApi({
+    url: serviceId + `/topic/getTopics`,
+    method: 'post',
+    data: data
+  }).then(res => res.data).catch(err => console.error(err))
+}
+// 获取知识图谱评价
+export function getDiscusses (data) {
+  return serviceApi({
+    url: serviceId + `/discuss/getDiscusses`,
+    method: 'post',
+    data: data
+  }).then(res => res.data).catch(err => console.error(err))
+}
+//#endregion

@@ -19,258 +19,89 @@
         </div>
       </div>
       <div class="content">
-        <div class="item">
+        <div class="item" v-for="i in 3" :key="i">
           <div class="category">
             <div class="text">
-              <i class="el-icon-document" />大N场理论，弦论和引力
-            </div>
-          </div>
-          <div class="topic">
-            <div class="text">
-              <b>话题1：</b>文中空间场的作用力，是按张量计算的，那么N维空间的内洽性是不是丧失了？
+              <i class="el-icon-document" />大N场理论，弦论和引力{{i > 1 ? "(我是复制出来的话题)" : ""}}
             </div>
           </div>
 
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
+          <div v-for="(topic, index) in topics.data" :key="index">
+            <div class="topic">
+              <div class="text">
+                <b>话题{{index + 1}}：</b>{{topic.title}}
+              </div>
+              <div class="commentButton">
+                <el-button type="text" @click="selectTopic(topic)">发表评论</el-button>
+              </div>
             </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
 
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
+            <div class="comment" v-for="(discuss, discussIndex) in topic.discussList" :key="index + '-' + discussIndex">
+              <div class="avatar">
+                <img src="@/static/images/1587433534602.jpg" />
+              </div>
+              <div class="commentContent">
+                <div class="communityTitle">{{discuss.title}}</div>
+                  <div class="text">{{discuss.content}}<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+                  <div class="link">
+                    <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+                    <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+                    <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+                    <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+                    <div class="time">{{ discuss.createDate | dateFormat('MM-dd') }}</div>
+                  </div>
+              </div>
+            </div><!--discuss item-->
 
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-          
-          <div class="topic">
-            <div class="text">
-              <b>话题2：</b>XXXXX间的内洽性是不是丧失了？
-            </div>
-          </div>
+          </div><!--topic item-->
 
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="category">
-            <div class="text">
-              <i class="el-icon-document" />大N场理论，弦论和引力
-            </div>
-          </div>
-          <div class="topic">
-            <div class="text">
-              <b>话题1：</b>文中空间场的作用力，是按张量计算的，那么N维空间的内洽性是不是丧失了？
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-          
-        </div>
-
-        <div class="item">
-          <div class="category">
-            <div class="text">
-              <i class="el-icon-document" />大N场理论，弦论和引力
-            </div>
-          </div>
-          <div class="topic">
-            <div class="text">
-              <b>话题1：</b>文中空间场的作用力，是按张量计算的，那么N维空间的内洽性是不是丧失了？
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-
-          <div class="comment">
-            <div class="avatar">
-              <img src="@/static/images/1587433534602.jpg" />
-            </div>
-            <div class="commentContent">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-                <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-                <div class="link">
-                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                  <div class="time">刚刚</div>
-                </div>
-            </div>
-          </div>
-          
-        </div>
+        </div><!--paper item-->
 
       </div>
+    </div>
+    
+    <div class="pagination">
+      <el-pagination
+        :current-page.sync="result.currentPage"
+        :page-sizes="result.pageSizes"
+        :page-size="result.pageSize"
+        :total="result.total"
+        layout="total, sizes, prev, pager, next, jumper"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
+    </div>
+
+    <div class="communityForm">
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>发表评论</span>
+          <!-- <span>0条评论</span>
+          <el-button style="float: right; padding: 3px 0" type="text">切换为时间排序</el-button> -->
+        </div>
+        <div class="formWapper">
+          <el-form ref="form.editForm" :model="form.editForm" label-width="0px" :rules="form.editFormRules" class="edit-ruleForm">
+            <el-row :gutter="24" v-if="selectedTopic">
+              <el-col :span="24" style="padding-bottom: 10px ;">
+                您已选择评论话题：{{selectedTopic.title}}
+              </el-col>
+            </el-row>
+            <el-row :gutter="24">
+              <el-col :span="22">
+                <el-form-item :label-width="'0px'" prop="title" required>
+                  <el-input v-model="form.editForm.title" clearable></el-input>
+                </el-form-item>
+                <el-form-item :label-width="'0px'" prop="content" required>
+                  <el-input type="textarea" v-model="form.editForm.content" clearable></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="2" justify="center" align="bottom">
+                <el-button type="primary" :loading="submitLoading" @click="submitForm">发表</el-button>
+              </el-col>
+            </el-row>
+          </el-form>
+        </div>
+      </el-card>
     </div>
 
   </div>
@@ -279,7 +110,7 @@
 <script>
 
 export default {
-  name: 'sitemap',
+  name: 'topic',
 
   scrollToTop: true,
 
@@ -344,12 +175,17 @@ export default {
   },
 
   fetch ({ store }) {
-    return store.dispatch('sitemap/getSitemap', { page_size: 1000 })
+    return store.dispatch('topic/getTopics', { pageSize: 10 })
   },
 
   computed: {
-    tag () {
-      return this.$store.state.tag.data
+    topics () {
+      const topics = this.$store.state.topic.topics
+      this.result.total = topics.total
+      this.result.currentPage = topics.pageNum
+      this.result.pageSize = topics.pageSize
+      this.result.data = JSON.parse(JSON.stringify(topics.list)) // 断开引用
+      return this.result
     },
 
     option () {
@@ -364,38 +200,90 @@ export default {
       return this.$store.state.sitemap.art
     }
   },
-
-  filters: {
-    monthFilter (val) {
-    //   val = parseInt(val)
-    //   switch (val) {
-    //     case 1: return 'January'
-    //     case 2: return 'February'
-    //     case 3: return 'March'
-    //     case 4: return 'April'
-    //     case 5: return 'May'
-    //     case 6: return 'June'
-    //     case 7: return 'July'
-    //     case 8: return 'August'
-    //     case 9: return 'September'
-    //     case 10: return 'October'
-    //     case 11: return 'November'
-    //     case 12: return 'December'
-    //   }
-      return val
-    }
-  },
   data() {
     return {
-      topicCategory: ''
+      topicCategory: '',
+      selectedTopic: null,
+      submitLoading: false,
+      result: {
+        data: [],
+        currentPage: 1,
+        pageSize: 8,
+        pageSizes: [8, 10, 12],
+        total: 0
+      },
+      form: {
+        editForm: {
+          title: '',
+          content: ''
+        },
+        editFormRules: {
+          title: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入评论标题', trigger: 'blur' }
+          ],
+          content: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入评论内容', trigger: 'blur' }
+          ]
+        }
+      }
     }
   },
   methods: {
+    submitForm() {
+      this.$refs['form.editForm'].validate(async(valid) => {
+        if(!this.selectedTopic) {
+          this.$message.error('请选择您要评论的话题！')
+          return false
+        }
+        if (valid) {
+          this.submitLoading = true
+          var editForm = JSON.parse(JSON.stringify(this.form.editForm))
+          if(this.search.refId) {
+            editForm.topicId = this.search.refId
+          }
+
+          const result = await this.$store.dispatch('discuss/postDiscuss', {
+            topicId: this.selectedTopic.id,
+            title: this.form.editForm.title,
+            content: this.form.editForm.content
+          })
+
+          this.submitLoading = false
+          if (result.status === 0) {
+            this.$message.error(result.message)
+            return false
+          }
+          this.$message.success(result.message)
+          this.$refs['form.editForm'].resetFields()
+          this.selectedTopic = null
+          
+          setTimeout(()=>{
+            window.location.href = window.location.href
+          }, 1000)
+
+          return false
+        } else {
+          this.$message.error('请根据错误提示修改评论数据！')
+          return false
+        }
+      })
+    },
+    selectTopic(topic) {
+      this.selectedTopic = topic
+    },
     goType(item) {
       let route = '/code';
       if (item.type === 2) route = '/think';
       if (item.type === 3) route = 'fuck';
       this.$router.push(route);
+    },
+    handleCurrentChange() {
+      console.log("aaaa")
+    },
+    handleSizeChange() {
+      console.log("bbbb")
     },
     forward(page) {
       let route = ""
@@ -680,13 +568,17 @@ export default {
         }
         .topic {
           display: flex;
-          justify-content: flex-start;
+          justify-content: space-between ;
           align-items: center;
           padding: 10px;
           padding-bottom: 0px;
 
           .text {
             font-size: 16px ;
+          }
+          .commentButton {
+            font-size: 12px;
+            font-weight: normal;
           }
         }
 
@@ -751,6 +643,19 @@ export default {
         background: #eff7ff;
       }
     }
+  }
+
+  .pagination {
+    margin:auto ;
+    margin-top: 10px ;
+    width: 90rem;
+    background: #FFFFFF;
+    padding: 10px ;
+  }
+  .communityForm {
+    margin:auto ;
+    margin-top: 10px ;
+    width: 90rem;
   }
 
 }

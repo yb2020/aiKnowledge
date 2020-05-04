@@ -96,50 +96,56 @@
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="热门讨论" name="review">
           <div class="comment">
-            <div class="item">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-              <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+            <div class="item" v-for="(discuss, index) in discusses.data" :key="discuss.id">
+              <div class="communityTitle">{{discuss.title}}</div>
+              <div class="text">{{discuss.content}}<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
               <div class="link">
                 <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
                 <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
                 <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
                 <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                <div class="time">刚刚</div>
+                <div class="time">{{ discuss.createDate | dateFormat('MM-dd') }}</div>
               </div>
             </div>
-            <div class="item">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-              <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-              <div class="link">
-                <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                <div class="time">刚刚</div>
+          </div>
+
+          <div class="pagination">
+            <el-pagination
+              :current-page.sync="result.currentPage"
+              :page-sizes="result.pageSizes"
+              :page-size="result.pageSize"
+              :total="result.total"
+              layout="total, sizes, prev, pager, next, jumper"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+            />
+          </div>
+
+          <div class="communityForm">
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>发表评论</span>
+                <!-- <span>0条评论</span>
+                <el-button style="float: right; padding: 3px 0" type="text">切换为时间排序</el-button> -->
               </div>
-            </div>
-            <div class="item">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-              <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-              <div class="link">
-                <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                <div class="time">刚刚</div>
+              <div class="formWapper">
+                <el-form ref="form.editForm" :model="form.editForm" label-width="0px" :rules="form.editFormRules" class="edit-ruleForm">
+                  <el-row :gutter="24">
+                    <el-col :span="22">
+                      <el-form-item :label-width="'0px'" prop="title" required>
+                        <el-input v-model="form.editForm.title" clearable></el-input>
+                      </el-form-item>
+                      <el-form-item :label-width="'0px'" prop="content" required>
+                        <el-input type="textarea" v-model="form.editForm.content" clearable></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="2" justify="center" align="bottom">
+                      <el-button type="primary" :loading="submitLoading" @click="submitForm">发表</el-button>
+                    </el-col>
+                  </el-row>
+                </el-form>
               </div>
-            </div>
-            <div class="item">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-              <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-              <div class="link">
-                <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                <div class="time">刚刚</div>
-              </div>
-            </div>
+            </el-card>
           </div>
         </el-tab-pane>
         <el-tab-pane label="刊物" name="reference">
@@ -232,15 +238,36 @@ export default {
   },
 
   fetch ({ store, params }) {
-    return store.dispatch('article/getArtList', {
-      ...params,
-      page_size: 100
-    })
+    return store.dispatch('discuss/getDiscusses', { pageSize: 10 })
   },
 
   data () {
     return {
-      activeName: 'review'
+      activeName: 'review',
+      submitLoading: false,
+      result: {
+        data: [],
+        currentPage: 1,
+        pageSize: 8,
+        pageSizes: [8, 10, 12],
+        total: 0
+      },
+      form: {
+        editForm: {
+          title: '',
+          content: ''
+        },
+        editFormRules: {
+          title: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入评论标题', trigger: 'blur' }
+          ],
+          content: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入评论内容', trigger: 'blur' }
+          ]
+        }
+      }
     }
   },
 
@@ -249,12 +276,57 @@ export default {
   },
 
   methods: {
+    submitForm() {
+      this.$refs['form.editForm'].validate(async(valid) => {
+        if (valid) {
+          this.submitLoading = true
+          var editForm = JSON.parse(JSON.stringify(this.form.editForm))
+
+          const result = await this.$store.dispatch('discuss/postDiscuss', {
+            title: this.form.editForm.title,
+            content: this.form.editForm.content
+          })
+
+          this.submitLoading = false
+          if (result.status === 0) {
+            this.$message.error(result.message)
+            return false
+          }
+          this.$message.success(result.message)
+          this.$refs['form.editForm'].resetFields()
+          this.selectedTopic = null
+          
+          setTimeout(()=>{
+            window.location.href = window.location.href
+          }, 1000)
+
+          return false
+        } else {
+          this.$message.error('请根据错误提示修改评论数据！')
+          return false
+        }
+      })
+    },
+    handleCurrentChange() {
+      console.log("aaaa")
+    },
+    handleSizeChange() {
+      console.log("bbbb")
+    },
     handleClick() {
       
     }
   },
 
   computed: {
+    discusses () {
+      const discusses = this.$store.state.discuss.data
+      this.result.total = discusses.total
+      this.result.currentPage = discusses.pageNum
+      this.result.pageSize = discusses.pageSize
+      this.result.data = JSON.parse(JSON.stringify(discusses.list)) // 断开引用
+      return this.result
+    },
     mobileLayout () {
       return this.$store.state.options.mobileLayout
     },
@@ -409,6 +481,18 @@ export default {
       .item:hover {
         background: #f0f0f0;
       }
+    }
+
+    .pagination {
+      margin:auto ;
+      margin-top: 10px ;
+      width: 90rem;
+      padding: 10px ;
+    }
+    .communityForm {
+      margin:auto ;
+      margin-top: 10px ;
+      width: 90rem;
     }
     
 

@@ -255,17 +255,38 @@ export default {
   },
 
   fetch ({ store, params }) {
-    return store.dispatch('article/getArtList', {
-      ...params,
-      page_size: 100
-    })
+    return store.dispatch('discuss/getDiscusses', { pageSize: 10 })
   },
 
   data () {
     return {
       activeName: 'reference',
       activeCollapseName: '1',
-      timeFilter: '0'
+      timeFilter: '0',
+      submitLoading: false,
+      result: {
+        data: [],
+        currentPage: 1,
+        pageSize: 8,
+        pageSizes: [8, 10, 12],
+        total: 0
+      },
+      form: {
+        editForm: {
+          title: '',
+          content: ''
+        },
+        editFormRules: {
+          title: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入评论标题', trigger: 'blur' }
+          ],
+          content: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入评论内容', trigger: 'blur' }
+          ]
+        }
+      }
     }
   },
 

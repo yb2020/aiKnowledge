@@ -140,42 +140,20 @@
     <div class="communityContent">
       <div class="title">社区热点追踪</div>
       <div class="content">
-        <div class="item">
-          <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-          <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+        <div class="item" v-for="(discuss, index) in discusses.data" :key="discuss.id">
+          <div class="communityTitle">{{discuss.title}}</div>
+          <div class="text">{{discuss.content}}<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
           <div class="link">
             <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
             <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
             <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
             <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-            <div class="time">刚刚</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-          <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-          <div class="link">
-            <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-            <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-            <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-            <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-            <div class="time">1天前</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-          <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-          <div class="link">
-            <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-            <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-            <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-            <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-            <div class="time">2天前</div>
+            <div class="time">{{ discuss.createDate | dateFormat('MM-dd') }}</div>
           </div>
         </div>
       </div>
     </div>
-
+    
   </div>
 </template>
 
@@ -247,11 +225,21 @@ export default {
   },
 
   fetch ({ store }) {
+    store.dispatch('sitemap/getSitemap', { page_size: 1000 })
     return store.dispatch('sitemap/getSitemap', { page_size: 1000 })
   },
 
   computed: {
+    discusses () {
+      const discusses = this.$store.state.discuss.data
+      this.result.total = discusses.total
+      this.result.currentPage = discusses.pageNum
+      this.result.pageSize = discusses.pageSize
+      this.result.data = JSON.parse(JSON.stringify(discusses.list)) // 断开引用
+      return this.result
+    },
     tag () {
+      console.log(this.$store.state.tag.data)
       return this.$store.state.tag.data
     },
 
@@ -298,7 +286,14 @@ export default {
           { "value": "红辣椒麻辣烫", "address": "上海市长宁区天山西路492号" },
           { "value": "(小杨生煎)西郊百联餐厅", "address": "长宁区仙霞西路88号百联2楼" },
           { "value": "阳阳麻辣烫", "address": "天山西路389号" },
-          { "value": "南拳妈妈龙虾盖浇饭", "address": "普陀区金沙江路1699号鑫乐惠美食广场A13" }]
+          { "value": "南拳妈妈龙虾盖浇饭", "address": "普陀区金沙江路1699号鑫乐惠美食广场A13" }],
+      result: {
+        data: [],
+        currentPage: 1,
+        pageSize: 8,
+        pageSizes: [8, 10, 12],
+        total: 0
+      },
     }
   },
   methods: {
