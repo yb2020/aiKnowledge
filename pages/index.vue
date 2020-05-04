@@ -225,8 +225,7 @@ export default {
   },
 
   fetch ({ store }) {
-    store.dispatch('sitemap/getSitemap', { page_size: 1000 })
-    return store.dispatch('sitemap/getSitemap', { page_size: 1000 })
+    return store.dispatch('discuss/getDiscusses', { pageSize: 10 })
   },
 
   computed: {
