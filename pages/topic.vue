@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="content">
-        <div class="item" v-for="squareTopic in squareTopics.list" :key="squareTopic.id">
+        <div class="item" v-for="(squareTopic, squareTopicIndex) in squareTopics.list" :key="squareTopic.id">
           <div class="category">
             <div class="text">
               <nuxt-link :to="`/paper/${squareTopic.id}`">
@@ -28,23 +28,26 @@
             </div>
           </div>
 
-          <div v-for="(topic, index) in squareTopic.topicList" :key="index">
+          <div v-for="(topic, topicIndex) in squareTopic.topicList" :key="topic.id">
             <div class="topic">
               <div class="text">
-                <b>话题{{index + 1}}：</b>{{topic.title}}
+                <b>话题{{topicIndex + 1}}：</b>{{topic.title}}
               </div>
               <div class="commentButton">
                 <el-button type="text" @click="selectTopic(squareTopic, topic)">发表评论</el-button>
               </div>
             </div>
 
-            <div class="comment" v-for="(discuss, discussIndex) in topic.discussList" :key="index + '-' + discussIndex">
+            <div class="comment" v-for="(discuss, discussIndex) in topic.discussList" :key="discuss.id">
               <div class="avatar">
                 <img src="@/static/images/1587433534602.jpg" />
               </div>
               <div class="commentContent">
                 <div class="communityTitle">{{discuss.title}}</div>
-                  <div class="text">{{discuss.content}}<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+                  <div class="text">
+                    {{discuss.content}}
+                    <el-button @click="toggleShow(squareTopicIndex, topicIndex, discussIndex)" v-if="!discuss.isFull" type="text">{{discuss.displayShort ? "阅读全文" : "收起全文"}}<i :class="discuss.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
+                  </div>
                   <div class="link">
                     <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
                     <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
@@ -227,6 +230,13 @@ export default {
     }
   },
   methods: {
+    toggleShow(squareTopicIndex, topicIndex, discussIndex) {
+      this.$store.dispatch('topic/toggleShow', {
+        squareTopicIndex: squareTopicIndex,
+        topicIndex: topicIndex,
+        discussIndex: discussIndex  
+      })
+    },
     submitForm() {
       this.$refs['form.editForm'].validate(async(valid) => {
         if(!this.selectedTopic) {

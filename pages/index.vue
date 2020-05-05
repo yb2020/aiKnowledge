@@ -142,7 +142,10 @@
       <div class="content">
         <div class="item" v-for="(discuss, index) in discusses.data" :key="discuss.id">
           <div class="communityTitle">{{discuss.title}}</div>
-          <div class="text">{{discuss.content}}<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+          <div class="text">
+            {{discuss.content}}
+            <el-button @click="toggleShow(index)" v-if="!discuss.isFull" type="text">{{discuss.displayShort ? "阅读全文" : "收起全文"}}<i :class="discuss.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
+          </div>
           <div class="link">
             <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
             <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
@@ -296,6 +299,9 @@ export default {
     }
   },
   methods: {
+    toggleShow(index) {
+      this.$store.dispatch('discuss/toggleShow', index)
+    },
     goType(item) {
       let route = '/code';
       if (item.type === 2) route = '/think';

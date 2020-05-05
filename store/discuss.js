@@ -26,8 +26,8 @@ export const mutations = {
 
     data.list.forEach(row => {
       row.cacheContent = row.content
-      if(row.content.length > 100 ) {
-        row.content = row.content.substring(0, 100) + '...'
+      if(row.content.length > 20 ) {
+        row.content = row.content.substring(0, 20) + '...'
         row.displayShort = true
       }else {
         row.isFull = true
