@@ -158,6 +158,22 @@ export function getNav (params) {
 
 
 //#######知识图谱########
+// 搜索论文
+export function searchPaper (data) {
+  return serviceApi({
+    url: serviceId + `/paper/search`,
+    method: 'post',
+    data: data
+  }).then(res => res.data).catch(err => console.error(err))
+}
+// 获取论文详情
+export function getPaperById (data) {
+  return serviceApi({
+    url: serviceId + `/paper/getById`,
+    method: 'post',
+    data: data
+  }).then(res => res.data).catch(err => console.error(err))
+}
 // 提交知识图谱话题和评价
 export function postDiscuss (data) {
   return serviceApi({

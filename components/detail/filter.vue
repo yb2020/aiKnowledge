@@ -9,12 +9,12 @@
           <div>
 
             From<el-date-picker
-              v-model="value3"
+              v-model="createDate"
               style="width: 110px"
               type="year"
               placeholder="year">
             </el-date-picker> To<el-date-picker
-              v-model="value3"
+              v-model="toDate"
               style="width: 110px"
               type="year"
               placeholder="year">
@@ -252,6 +252,8 @@ export default {
   name: 'aside',
   data () {
     return {
+      createDate: '',
+      toDate: '',
       activeName: "1",
       checkTopicsList: [],
       checkPublicationicsList: [],

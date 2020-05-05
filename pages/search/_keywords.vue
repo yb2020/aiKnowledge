@@ -1,199 +1,30 @@
 <template>
   <div class="keywords">
     <div class="title">
-        <div class="icon"><i class="el-icon-document" /></div>
-        <div class="text">深度残差学习用于图像识别</div>
-    </div>
-
-    <div class="content">
-
-      <div class="left">
-        <div class="authorInfo">
-          <div class="time">2016年 计算机视觉和模式识别 </div>
-          <div class="number"> | DOI： 10.1109 / CVPR.2016.90</div>
-        </div>
-        <div class="authorInfo">
-          <div class="author">何开明1,</div>
-          <div class="author">张象屿2,</div>
-          <div class="author">邵少任1,</div>
-          <div class="author">孙健1</div>
-        </div>
-
-        <div class="authorInfo">
-          <div class="org">1 Microsoft ,</div>
-          <div class="org">2 西安交通大学</div>
-        </div>
-
-        <div class="references">
-          <div class="icon"><i class="el-icon-user-solid" /></div>
-          <div class="number">50</div>
-          <div class="text">参考文献</div>
-
-          <div class="icon"><i class="el-icon-link" /></div>
-          <div class="number">40,522</div>
-          <div class="text">引用</div>
-        </div>
-
-        <div class="infoTitle">
-          <h4>摘要</h4>
-          <p style="text-indent: 28px ;">
-            更深的神经网络更难训练。我们提出了一种残差的学习框架，以简化比以前使用的网络更深入的网络训练。我们显式地将层重新配置为参考层输入学习剩余函数，而不是学习未参考函数。我们提供了全面的经验证据，表明这些残差网络更易于优化，并且可以通过大大增加的深度来获得准确性。在ImageNet数据集上，我们评估深度最大为152层的残差网络-比VGG网络[40]深8倍，但复杂度仍然较低。这些残留网络的整体在ImageNet测试仪上实现了3.57％的误差。该结果在ILSVRC 2015分类任务中获得第一名。我们还介绍了具有100和1000层的CIFAR-10的分析。表示的深度对于许多视觉识别任务至关重要。仅由于我们的深度表示，我们在COCO对象检测数据集上获得了28％的相对改进。深度残差网是我们提交ILSVRC和COCO 2015竞赛1的基础，在该竞赛中，我们还获得了ImageNet检测，ImageNet本地化，COCO检测和COCO分割等任务的第一名。          
-          </p>
-        </div>
-
-        <div class="infoTitle">
-          <h4>链接</h4>
-          <p>
-            PDF:arxiv.org
-          </p>
-          <p>站点:dblp.uni-trier.de | doi.ieeecomputersociety.org | openaccess.thecvf.com | doi.org | ieeexplore.ieee.org | scinapse.io | ui.adsabs.harvard.edu | arxiv-vanity.com | cv-foundation.org | xplqa30.ieee.org</p>
-          <p>附加链接:arxiv.org | dx.doi.org | ieeexplore.ieee.org</p>
-          <p>论文资源: https://github.com/D-X-Y/ResNeXt-DenseNet/blob/master/README.md</p>
-        </div>
-
-        <div class="infoTitle">
-          <h4>其他版本</h4>
-          <p>深度残差学习用于图像识别
-          </p>
-          <p>2015 arXiv：计算机视觉和模式识别</p>
-        </div>
-        
-        
-        <div class="infoTitle">
-          <h4>相关学科</h4>
-          <p>
-            <el-tag type="">
-              <i class="el-icon-magic-stick" />消失梯度问题
-            </el-tag>
-            <el-tag type="" >
-              <i class="el-icon-magic-stick" />模式识别
-            </el-tag>
-            <el-tag type="" >
-              <i class="el-icon-magic-stick" />物体检测
-            </el-tag>
-            <el-tag type="" >
-              <i class="el-icon-magic-stick" />机器学习
-            </el-tag>
-            <el-tag type="" >
-              <i class="el-icon-magic-stick" />MNIST数据库
-            </el-tag>
-            <el-tag type="" >
-              <i class="el-icon-magic-stick" />深度学习
-            </el-tag>
-            <el-tag type="" >
-              <i class="el-icon-magic-stick" />卷积神经网络
-            </el-tag>
-            <el-tag type="" >
-              <i class="el-icon-magic-stick" />计算机视觉
-            </el-tag>
-            <el-tag type="" >
-              <i class="el-icon-magic-stick" />计算机科学
-            </el-tag>
-            <el-tag type="" >
-              <i class="el-icon-magic-stick" />人工神经网络
-            </el-tag>
-          </p>
-          <p style="padding-top: 10px ;"> 
-            <el-button size="mini" type="primary">关注</el-button>
-            <el-button size="mini" type="primary">要求</el-button>
-
-            <el-button-group style="padding-left: 10px ;">
-              <el-button size="mini" icon="el-icon-edit" type="primary"></el-button>
-              <el-button size="mini" icon="el-icon-document" type="primary"></el-button>
-              <el-button size="mini" icon="el-icon-share" type="primary"></el-button>
-            </el-button-group>
-          </p>
-        </div>
-      </div>
-
-      <div class="right">
-        <el-card :body-style="{ padding: '0px' }">
-          <img width="100%" src="@/static/images/1587431549920.jpg">
-          <div style="padding: 14px;">
-            <span>深度残差学习用于图像识别</span>
-            <div class="bottom clearfix">
-              <time class="time">当前时间</time>
-              <el-button type="text" class="button">查看原文</el-button>
-            </div>
-          </div>
-        </el-card>
-      </div>
-      
+        <div class="icon"><i class="el-icon-search" /></div>
+        <div class="text">{{ keywords }}</div>
     </div>
 
     <div class="detailContent">
-      <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="热门讨论" name="review">
-          <div class="comment">
-            <div class="item" v-for="(discuss, index) in discusses.data" :key="discuss.id">
-              <div class="communityTitle">{{discuss.title}}</div>
-              <div class="text">{{discuss.content}}<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-              <div class="link">
-                <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                <div class="time">{{ discuss.createDate | dateFormat('MM-dd') }}</div>
-              </div>
-            </div>
-          </div>
-
+      <div class="tabContent">
+        <div class="left">
+          <filterView />
+        </div>
+        <div class="right">
+          <listView :list="searchResult.list" />
           <div class="pagination">
             <el-pagination
-              :current-page.sync="result.currentPage"
-              :page-sizes="result.pageSizes"
-              :page-size="result.pageSize"
-              :total="result.total"
+              :current-page.sync="searchResult.pageNum"
+              :page-sizes="pageSizes"
+              :page-size="searchResult.pageSize"
+              :total="searchResult.total"
               layout="total, sizes, prev, pager, next, jumper"
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
             />
           </div>
-
-          <div class="communityForm">
-            <el-card class="box-card">
-              <div slot="header" class="clearfix">
-                <span>发表评论</span>
-                <!-- <span>0条评论</span>
-                <el-button style="float: right; padding: 3px 0" type="text">切换为时间排序</el-button> -->
-              </div>
-              <div class="formWapper">
-                <el-form ref="form.editForm" :model="form.editForm" label-width="0px" :rules="form.editFormRules" class="edit-ruleForm">
-                  <el-row :gutter="24">
-                    <el-col :span="22">
-                      <el-form-item :label-width="'0px'" prop="title" required>
-                        <el-input v-model="form.editForm.title" clearable></el-input>
-                      </el-form-item>
-                      <el-form-item :label-width="'0px'" prop="content" required>
-                        <el-input type="textarea" v-model="form.editForm.content" clearable></el-input>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="2" justify="center" align="bottom">
-                      <el-button type="primary" :loading="submitLoading" @click="submitForm">发表</el-button>
-                    </el-col>
-                  </el-row>
-                </el-form>
-              </div>
-            </el-card>
-          </div>
-        </el-tab-pane>
-        <el-tab-pane label="参考文献" name="reference">
-          <div class="tabContent">
-            <div class="left">
-              <filterView />
-            </div>
-            <div class="right">
-              <listView />
-            </div>
-          </div>
-        </el-tab-pane>
-        <el-tab-pane label="被引用" name="cited">
-          被引用
-        </el-tab-pane>
-        <el-tab-pane label="有关" name="related">
-          有关
-        </el-tab-pane>
-      </el-tabs>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -271,21 +102,17 @@ export default {
     }
   },
 
-  fetch ({ store, params }) {
-    return store.dispatch('discuss/getDiscusses', { pageSize: 10 })
+  async fetch ({ store, params }) {
+    let result1 = await store.dispatch('discuss/getDiscusses', { pageSize: 10 })
+    let result2 = await store.dispatch('search/searchPaper', params.keywords)
+    return {result1,result2}
   },
 
   data () {
     return {
       activeName: 'review',
       submitLoading: false,
-      result: {
-        data: [],
-        currentPage: 1,
-        pageSize: 8,
-        pageSizes: [8, 10, 12],
-        total: 0
-      },
+      pageSizes: [8, 10, 12],
       form: {
         editForm: {
           title: '',
@@ -310,6 +137,9 @@ export default {
   },
 
   methods: {
+    toggleShow(index) {
+      this.$store.dispatch('discuss/toggleShow', index)
+    },
     submitForm() {
       this.$refs['form.editForm'].validate(async(valid) => {
         if (valid) {
@@ -353,13 +183,11 @@ export default {
   },
 
   computed: {
+    searchResult() {
+      return this.$store.state.search.data
+    },
     discusses () {
-      const discusses = this.$store.state.discuss.data
-      this.result.total = discusses.total
-      this.result.currentPage = discusses.pageNum
-      this.result.pageSize = discusses.pageSize
-      this.result.data = JSON.parse(JSON.stringify(discusses.list)) // 断开引用
-      return this.result
+      return this.$store.state.discuss.data
     },
     mobileLayout () {
       return this.$store.state.options.mobileLayout
@@ -535,7 +363,6 @@ export default {
     .pagination {
       margin:auto ;
       margin-top: 10px ;
-      width: 90rem;
       padding: 10px ;
     }
     .communityForm {

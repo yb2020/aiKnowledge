@@ -8,13 +8,15 @@ export const state = () => ({
   // 话题
   topics: {
   },
+  squareTopics: {
+  },
   fetch: false
 });
 
 export const mutations = {
   SET_TOPIC(state, data) {
+    state.squareTopics = data
     state.fetch = true;
-    state.topics = data
   }
 };
 

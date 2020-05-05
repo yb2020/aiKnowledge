@@ -19,20 +19,22 @@
         </div>
       </div>
       <div class="content">
-        <div class="item" v-for="i in 3" :key="i">
+        <div class="item" v-for="squareTopic in squareTopics.list" :key="squareTopic.id">
           <div class="category">
             <div class="text">
-              <i class="el-icon-document" />大N场理论，弦论和引力{{i > 1 ? "(我是复制出来的话题)" : ""}}
+              <nuxt-link :to="`/paper/${squareTopic.id}`">
+                <i class="el-icon-document" />{{squareTopic.title}}
+              </nuxt-link>
             </div>
           </div>
 
-          <div v-for="(topic, index) in topics.data" :key="index">
+          <div v-for="(topic, index) in squareTopic.topicList" :key="index">
             <div class="topic">
               <div class="text">
                 <b>话题{{index + 1}}：</b>{{topic.title}}
               </div>
               <div class="commentButton">
-                <el-button type="text" @click="selectTopic(topic)">发表评论</el-button>
+                <el-button type="text" @click="selectTopic(squareTopic, topic)">发表评论</el-button>
               </div>
             </div>
 
@@ -62,10 +64,10 @@
     
     <div class="pagination">
       <el-pagination
-        :current-page.sync="result.currentPage"
-        :page-sizes="result.pageSizes"
-        :page-size="result.pageSize"
-        :total="result.total"
+        :current-page.sync="squareTopics.pageNum"
+        :page-sizes="pageSizes"
+        :page-size="squareTopics.pageSize"
+        :total="squareTopics.total"
         layout="total, sizes, prev, pager, next, jumper"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
@@ -81,6 +83,11 @@
         </div>
         <div class="formWapper">
           <el-form ref="form.editForm" :model="form.editForm" label-width="0px" :rules="form.editFormRules" class="edit-ruleForm">
+            <el-row :gutter="24" v-if="selectedSquareTopic">
+              <el-col :span="24" style="padding-bottom: 10px ;">
+                论文：{{selectedSquareTopic.title}}
+              </el-col>
+            </el-row>
             <el-row :gutter="24" v-if="selectedTopic">
               <el-col :span="24" style="padding-bottom: 10px ;">
                 您已选择评论话题：{{selectedTopic.title}}
@@ -179,15 +186,9 @@ export default {
   },
 
   computed: {
-    topics () {
-      const topics = this.$store.state.topic.topics
-      this.result.total = topics.total
-      this.result.currentPage = topics.pageNum
-      this.result.pageSize = topics.pageSize
-      this.result.data = JSON.parse(JSON.stringify(topics.list)) // 断开引用
-      return this.result
+    squareTopics() {
+      return this.$store.state.topic.squareTopics
     },
-
     option () {
       return this.$store.state.options.option
     },
@@ -204,14 +205,9 @@ export default {
     return {
       topicCategory: '',
       selectedTopic: null,
+      selectedSquareTopic: null,
       submitLoading: false,
-      result: {
-        data: [],
-        currentPage: 1,
-        pageSize: 8,
-        pageSizes: [8, 10, 12],
-        total: 0
-      },
+      pageSizes: [8, 10, 12],
       form: {
         editForm: {
           title: '',
@@ -247,6 +243,7 @@ export default {
           const result = await this.$store.dispatch('discuss/postDiscuss', {
             topicId: this.selectedTopic.id,
             title: this.form.editForm.title,
+            refId: this.selectedSquareTopic.id,
             content: this.form.editForm.content
           })
 
@@ -258,6 +255,7 @@ export default {
           this.$message.success(result.message)
           this.$refs['form.editForm'].resetFields()
           this.selectedTopic = null
+          this.selectedSquareTopic = null
           
           setTimeout(()=>{
             window.location.href = window.location.href
@@ -270,7 +268,8 @@ export default {
         }
       })
     },
-    selectTopic(topic) {
+    selectTopic(squareTopic, topic) {
+      this.selectedSquareTopic = squareTopic
       this.selectedTopic = topic
     },
     goType(item) {

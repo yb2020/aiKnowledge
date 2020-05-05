@@ -41,7 +41,7 @@
           </nav>
           <div class="search">
               <el-input
-              v-model="keyword"
+              v-model="searchValue"
               style="width: 100%;"
               placeholder="搜索学术、作者、学科、机构等"
               clearable
@@ -73,6 +73,7 @@ export default {
   data () {
     return {
       keyword: '',
+      searchValue: '',
       open: false,
       navArray: [
         // {
@@ -138,6 +139,7 @@ export default {
     },
 
     search() {
+      
       this.$router.push(`/search/${this.searchValue}`)
     },
 

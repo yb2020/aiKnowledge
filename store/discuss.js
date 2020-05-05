@@ -23,6 +23,17 @@ export const mutations = {
 
   get_list_success(state, data) {
     state.fetching = false;
+
+    data.list.forEach(row => {
+      row.cacheContent = row.content
+      if(row.content.length > 100 ) {
+        row.content = row.content.substring(0, 100) + '...'
+        row.displayShort = true
+      }else {
+        row.isFull = true
+      }
+    })
+
     state.data = data;
   },
 
@@ -44,6 +55,17 @@ export const mutations = {
     state.posting = false;
   },
 
+  toggle_show(state, index) {
+    let item = state.data.list[index]
+    let cacheContent = item.content
+    item.content = item.cacheContent
+    item.cacheContent = cacheContent
+    item.displayShort = !item.displayShort
+    console.log(state.data.list[index].displayShort)
+    console.log(state.data.list[index].content)
+
+  },
+
   // 喜欢某条评论
   LIKE_ITEM(state, action) {
     const comment = state.data.data.list.find(comment => Object.is(comment.id, action.id));
@@ -52,6 +74,10 @@ export const mutations = {
 };
 
 export const actions = {
+  // 评论显示或隐藏
+  toggleShow({ commit }, index) {
+    commit('toggle_show', index);
+  },
   // 发布评论
   async postDiscuss({ commit }, discuss) {
     commit('post_discuss');
