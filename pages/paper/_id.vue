@@ -35,65 +35,67 @@
         </div>
 
         <div class="infoTitle" :key="'infoTitle1'">
-          <el-tabs v-model="activePaperName" @tab-click="handlePaperClick">
-            <el-tab-pane label="摘要" name="summary" key="summary">
-              <p style="text-indent: 28px ;">
-                {{paper.summary}}
-                <el-button style="padding: 0px" @click="toggleShowSummary" v-if="!paper.isFull" type="text">{{paper.displayShort ? "展开" : "收起"}}<i :class="paper.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
-              </p>
-            </el-tab-pane>
-            <el-tab-pane label="翻译" name="translate" key="translate">
-              <p><b>AI翻译</b></p>
-              <p style="text-indent: 28px ;" v-if="paper.ext && paper.ext.botTranslateSummary">
-                {{paper.ext.botTranslateSummary}}
-                <el-button style="padding: 0px" @click="toggleShowBotTranslateSummary" v-if="!paper.ext.isFull" type="text">
-                  {{paper.ext.displayShort ? "展开" : "收起"}}
-                  <i :class="paper.ext.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" />
-                </el-button>
-              </p>
-              <div style="padding-top: 10px" v-if="paper.ext && paper.ext.translateSummary">
-                <p><b>人工翻译</b></p>
-                <p>{{paper.ext.translateSummary}}</p>
-              </div>
-              <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.translateSummary">
-                <b>人工翻译</b>
-                {{paper.ext.translateSummary}}
-                <el-form ref="extForm.summaryForm" :model="extForm.summaryForm" label-width="0px" :rules="extForm.summaryFormRules" class="edit-ruleForm">
-                  <el-row :gutter="24">
-                    <el-col :span="20">
-                      <el-form-item :label-width="'0px'" prop="translateSummary" required>
-                          <el-input type="textarea" v-model="extForm.summaryForm.translateSummary" clearable></el-input>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="2" justify="center" align="bottom">
-                      <el-button type="primary" :loading="submitLoading" @click="submitTranslateForm">提交翻译</el-button>
-                    </el-col>
-                  </el-row>
-                </el-form>
-              </p>
-            </el-tab-pane>
-            <el-tab-pane label="阅读指引" name="readingGuide" key="readingGuide">
-              <div v-if="paper.ext && paper.ext.translateSummary">
-                <p>{{paper.ext.readingGuide}}</p>
-              </div>
-              <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.readingGuide">
-                <b>阅读指引</b>
-                {{paper.ext.readingGuide}}
-                <el-form ref="extForm.readingGuideForm" :model="extForm.readingGuideForm" label-width="0px" :rules="extForm.readingGuideFormRules" class="edit-ruleForm">
-                  <el-row :gutter="24">
-                    <el-col :span="20">
-                      <el-form-item :label-width="'0px'" prop="readingGuide" required>
-                          <el-input type="textarea" v-model="extForm.readingGuideForm.readingGuide" clearable></el-input>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="2" justify="center" align="bottom">
-                      <el-button type="primary" :loading="submitLoading" @click="submitReadingGuideForm">提交</el-button>
-                    </el-col>
-                  </el-row>
-                </el-form>
-              </p>
-            </el-tab-pane>
-          </el-tabs>
+          <no-ssr>
+            <el-tabs v-model="activePaperName" @tab-click="handlePaperClick">
+              <el-tab-pane label="摘要" name="summary" key="summary">
+                <p style="text-indent: 28px ;">
+                  {{paper.summary}}
+                  <el-button style="padding: 0px" @click="toggleShowSummary" v-if="!paper.isFull" type="text">{{paper.displayShort ? "展开" : "收起"}}<i :class="paper.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
+                </p>
+              </el-tab-pane>
+              <el-tab-pane label="翻译" name="translate" key="translate">
+                <p><b>AI翻译</b></p>
+                <p style="text-indent: 28px ;" v-if="paper.ext && paper.ext.botTranslateSummary">
+                  {{paper.ext.botTranslateSummary}}
+                  <el-button style="padding: 0px" @click="toggleShowBotTranslateSummary" v-if="!paper.ext.isFull" type="text">
+                    {{paper.ext.displayShort ? "展开" : "收起"}}
+                    <i :class="paper.ext.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" />
+                  </el-button>
+                </p>
+                <div style="padding-top: 10px" v-if="paper.ext && paper.ext.translateSummary">
+                  <p><b>人工翻译</b></p>
+                  <p>{{paper.ext.translateSummary}}</p>
+                </div>
+                <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.translateSummary">
+                  <b>人工翻译</b>
+                  {{paper.ext.translateSummary}}
+                  <el-form ref="extForm.summaryForm" :model="extForm.summaryForm" label-width="0px" :rules="extForm.summaryFormRules" class="edit-ruleForm">
+                    <el-row :gutter="24">
+                      <el-col :span="20">
+                        <el-form-item :label-width="'0px'" prop="translateSummary" required>
+                            <el-input type="textarea" v-model="extForm.summaryForm.translateSummary" clearable></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="2" justify="center" align="bottom">
+                        <el-button type="primary" :loading="submitLoading" @click="submitTranslateForm">提交翻译</el-button>
+                      </el-col>
+                    </el-row>
+                  </el-form>
+                </p>
+              </el-tab-pane>
+              <el-tab-pane label="阅读指引" name="readingGuide" key="readingGuide">
+                <div v-if="paper.ext && paper.ext.translateSummary">
+                  <p>{{paper.ext.readingGuide}}</p>
+                </div>
+                <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.readingGuide">
+                  <b>阅读指引</b>
+                  {{paper.ext.readingGuide}}
+                  <el-form ref="extForm.readingGuideForm" :model="extForm.readingGuideForm" label-width="0px" :rules="extForm.readingGuideFormRules" class="edit-ruleForm">
+                    <el-row :gutter="24">
+                      <el-col :span="20">
+                        <el-form-item :label-width="'0px'" prop="readingGuide" required>
+                            <el-input type="textarea" v-model="extForm.readingGuideForm.readingGuide" clearable></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="2" justify="center" align="bottom">
+                        <el-button type="primary" :loading="submitLoading" @click="submitReadingGuideForm">提交</el-button>
+                      </el-col>
+                    </el-row>
+                  </el-form>
+                </p>
+              </el-tab-pane>
+            </el-tabs>
+          </no-ssr>
         </div>
 
         <div class="infoTitle" :key="'infoTitle2'">
