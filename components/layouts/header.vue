@@ -1,56 +1,55 @@
 <template>
   <header v-fix class="darken">
     <div class="header">
-        <div class="header-left">
-          <div class="logo">
-            <nuxt-link to="/">
-              <!--img src="~/static/images/logo.png" alt="" width="36"-->
-              <img :src="option.staticDomain + option.logo" alt="" width="120" />
-            </nuxt-link>
-          </div>
-          <nav>
-            <div
-              class="nav-item"
-               v-for="(list, index) in nav"
-              :key="index">
-              <nuxt-link
-                :to="list.path"
-                :target="list.target"
-                exact>
-                {{ list.name }}
-              </nuxt-link>
-              <div class="sub-nav">
-                <template
-                  v-if="list.children">
-
-                   <nuxt-link
-                      class="sub-nav-item"
-                      v-for="child in list.children"
-                      :key="child.path"
-                      :to="child.path"
-                      exact
-                      tag="div">
-                      <span>
-                        {{ child.name }}
-                      </span>
-                  </nuxt-link>      
-                </template>
-
-              </div>
-            </div>
-          </nav>
-          <div class="search">
-              <el-input
-              v-model="searchValue"
-              style="width: 100%;"
-              placeholder="搜索学术、作者、学科、机构等"
-              clearable
-              >                
-                <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
-              </el-input>
-          </div>
-          
+      <div class="header-left">
+        <div class="logo">
+          <nuxt-link to="/">
+            <img :src="option.staticDomain + option.logo" alt="" width="120" />
+          </nuxt-link>
         </div>
+        <nav>
+          <div
+            class="nav-item"
+              v-for="(list, index) in nav"
+            :key="list.id + '-'+ index">
+            <nuxt-link
+              :to="list.path"
+              :target="list.target"
+              exact>
+              {{ list.name }}
+            </nuxt-link>
+            <div class="sub-nav">
+              <template
+                v-if="list.children">
+
+                  <nuxt-link
+                    class="sub-nav-item"
+                    v-for="child in list.children"
+                    :key="child.path"
+                    :to="child.path"
+                    exact
+                    tag="div">
+                    <span>
+                      {{ child.name }}
+                    </span>
+                </nuxt-link>      
+              </template>
+
+            </div>
+          </div>
+        </nav>
+        <div class="search">
+            <el-input
+            v-model="searchValue"
+            style="width: 100%;"
+            placeholder="搜索学术、作者、学科、机构等"
+            clearable
+            >                
+              <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
+            </el-input>
+        </div>
+        
+      </div>
 
       <div class="header-right">
         <el-button-group>

@@ -10,7 +10,6 @@ export const state = () => {
     fetching: false,
     posting: false,
     data: {
-
     },
     detail: {
     }
@@ -20,6 +19,15 @@ export const state = () => {
 export const mutations = {
   get_list_success(state, data) {
     state.fetching = false;
+    data.list.forEach(row => {
+      if(row.summary && row.summary.length > 360 ) {
+        row.cacheSummary = row.summary
+        row.summary = row.summary.substring(0, 360) + '...'
+        row.displayShort = true
+      }else {
+        row.isFull = true
+      }
+    })
     state.data = data;
   },
 
@@ -33,6 +41,13 @@ export const mutations = {
   },
 
   get_paper_success(state, action) {
+    if(action.summary && action.summary.length > 360 ) {
+      action.cacheSummary = action.summary
+      action.summary = action.summary.substring(0, 360) + '...'
+      action.displayShort = true
+    }else {
+      action.isFull = true
+    }
     state.detail = action
     state.posting = false;
   },
@@ -42,20 +57,34 @@ export const mutations = {
     state.detail = {};
   },
 
+  toggle_show_summary(state, index) {
+    var item = null 
+    if(!index) {
+      item = state.detail
+    }else {
+      item = state.data.list[index - 1]
+    }
+    let cacheSummary = item.summary
+    item.summary = item.cacheSummary
+    item.cacheSummary = cacheSummary
+    item.displayShort = !item.displayShort
+  },
+
   toggle_show(state, index) {
     let item = state.data.list[index]
     let cacheContent = item.content
     item.content = item.cacheContent
     item.cacheContent = cacheContent
     item.displayShort = !item.displayShort
-    console.log(state.data.list[index].displayShort)
-    console.log(state.data.list[index].content)
 
   },
 
 };
 
 export const actions = {
+  toggleShowSummary({ commit }, index) {
+    commit('toggle_show_summary', index);
+  },
   // 显示或隐藏
   toggleShow({ commit }, index) {
     commit('toggle_show', index);

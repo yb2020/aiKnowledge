@@ -4,6 +4,35 @@
 
     <div class="topContent">
       <div class="left">
+        <div class="label">学术动态</div>
+
+        <div class="news">
+          <div class="title"><span class="text"><i class="el-icon-s-help"></i>近期会议</span><span class="more"><a href="#">更多动态>></a></span></div>
+          <div class="content">
+            <ul>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="news">
+          <div class="title"><span class="text"><i class="el-icon-news"></i>新闻</span><span class="more"><a href="#">更多动态>></a></span></div>
+          <div class="content">
+            <ul>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="right">
         <h4 class="title">论文收录</h4>
         <div class="content">
           <el-card class="box-card">
@@ -71,41 +100,11 @@
             </div>
           </el-card>
         </div>
-
-      </div>
-      <div class="right">
-        <div class="label">学术动态</div>
-
-        <div class="news">
-          <div class="title"><span class="text"><i class="el-icon-s-help"></i>近期会议</span><span class="more"><a href="#">更多动态>></a></span></div>
-          <div class="content">
-            <ul>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="news">
-          <div class="title"><span class="text"><i class="el-icon-news"></i>新闻</span><span class="more"><a href="#">更多动态>></a></span></div>
-          <div class="content">
-            <ul>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
 
     <div class="pointerContent">
-      <div class="item">
+      <div class="item" v-for="(paper,index) in searchResult.list" :key="index">
         <div class="imgInfo">
           <i class="el-icon-picture-outline image"></i>
           <div class="info">
@@ -114,25 +113,14 @@
           </div>
         </div>
         <div class="summary">
-          <div class="title">深度残差学习用于图像识别</div>
+          <nuxt-link :to="`/paper/${paper.id}`">
+          <div class="title">
+            {{paper.title}}
+          </div>
           <div class="content">
-            更深的神经网络更难训练。我们提出了一种残差的学习框架，以简化比以前使用的网络更深入的网络训练。我们显式地将层重新配置为参考层输入学习剩余函数，而不是学习未参考函数。我们提供了全面的经验证据，表明这些残差网络更易于优化，并且可以通过大大增加的深度来获得准确性。
+            {{paper.summary}}
           </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="imgInfo">
-          <i class="el-icon-picture-outline image"></i>
-          <div class="info">
-            <div>作者：何开明</div>
-            <div>期刊：XX</div>
-          </div>
-        </div>
-        <div class="summary">
-          <div class="title">深度残差学习用于图像识别</div>
-          <div class="content">
-            更深的神经网络更难训练。我们提出了一种残差的学习框架，以简化比以前使用的网络更深入的网络训练。我们显式地将层重新配置为参考层输入学习剩余函数，而不是学习未参考函数。我们提供了全面的经验证据，表明这些残差网络更易于优化，并且可以通过大大增加的深度来获得准确性。
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -227,11 +215,19 @@ export default {
     }
   },
 
-  fetch ({ store }) {
-    return store.dispatch('discuss/getDiscusses', { pageSize: 10 })
+  async fetch ({ store }) {
+    let result1 = await store.dispatch('discuss/getDiscusses', { pageSize: 10 })
+    let result2 = await store.dispatch('search/searchPaper', {pageSize: 3})
+    return {
+      result1,
+      result2
+    }
   },
 
   computed: {
+    searchResult() {
+      return this.$store.state.search.data
+    },
     discusses () {
       const discusses = this.$store.state.discuss.data
       this.result.total = discusses.total
@@ -380,7 +376,65 @@ export default {
     display: flex;
     display: -webkit-flex; /* Safari */
     justify-content: space-around;
+
     .left {
+      width: 44rem;
+      background: #ffffff;
+
+      .label {
+        background: $blue;
+        font-size: 14px ;
+        color: #FFFFFF ;
+        padding: 10px ;
+      }
+
+      .news {
+        padding: 10px ;
+
+        .title {
+          font-size: 14px ;
+          color: #333333 ;
+          padding: 10px ;
+          border-bottom: 1px solid #f0f0f0 ;
+          display: flex;
+          display: -webkit-flex; /* Safari */
+          justify-content: space-between;
+          .more {
+            a {
+              color: $blue;
+            }
+          }
+        }
+
+        .content {
+          width: auto ;
+          padding: 10px ;
+
+          li {
+            padding: 2px 0px ;
+
+            a {
+              color: #333333 ;
+              display: flex;
+              display: -webkit-flex; /* Safari */
+              justify-content: space-between;
+
+              .time {
+                color: #999 ;
+                font-style: italic ;
+              }
+            }
+
+            a:hover { 
+              color: #ff0000 ;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .right {
       width: 44rem;
       padding: 10px;
       background-color: #FFFFFF;
@@ -439,62 +493,7 @@ export default {
 
       }
     }
-    .right {
-      width: 44rem;
-      background: #ffffff;
-
-      .label {
-        background: $blue;
-        font-size: 14px ;
-        color: #FFFFFF ;
-        padding: 10px ;
-      }
-
-      .news {
-        padding: 10px ;
-
-        .title {
-          font-size: 14px ;
-          color: #333333 ;
-          padding: 10px ;
-          border-bottom: 1px solid #f0f0f0 ;
-          display: flex;
-          display: -webkit-flex; /* Safari */
-          justify-content: space-between;
-          .more {
-            a {
-              color: $blue;
-            }
-          }
-        }
-
-        .content {
-          width: auto ;
-          padding: 10px ;
-
-          li {
-            padding: 2px 0px ;
-
-            a {
-              color: #333333 ;
-              display: flex;
-              display: -webkit-flex; /* Safari */
-              justify-content: space-between;
-
-              .time {
-                color: #999 ;
-                font-style: italic ;
-              }
-            }
-
-            a:hover { 
-              color: #ff0000 ;
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-    }
+    
   }
 
   .pointerContent {
@@ -505,16 +504,19 @@ export default {
     display: -webkit-flex; /* Safari */
     justify-content: space-around;
     .item {
-      width: 44rem;
+      width: 29rem;
       padding: 10px;
       background-color: #FFFFFF;
       display: flex;
       display: -webkit-flex; /* Safari */
       justify-content: space-between;
+      margin-left: 5px;
+      margin-right: 5px;
+
       .imgInfo {
-        width: 10rem;
+        width: 8rem;
         .image {
-          width: 10rem ;
+          width: 8rem ;
           height: 8rem ;
           border: 1px solid #f0f0f0;
           border-radius: 4px;
@@ -530,18 +532,26 @@ export default {
         }
       }
       .summary {
-        width: 33rem;
         padding-left: 1rem ;
 
         .title {
           font-size: 16px ;
           font-weight: bolder;
         }
+        
+        a:hover { 
+          color: #ff0000 ;
+          text-decoration: underline;
+        }
+
         .content {
           padding: 5px ;
           text-indent: 28px;
           font-size: 14px;
           line-height: 24px;
+          height: 100px;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
     }

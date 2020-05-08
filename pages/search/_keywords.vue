@@ -104,7 +104,7 @@ export default {
 
   async fetch ({ store, params }) {
     let result1 = await store.dispatch('discuss/getDiscusses', { pageSize: 10 })
-    let result2 = await store.dispatch('search/searchPaper', params.keywords)
+    let result2 = await store.dispatch('search/searchPaper', {keywords: params.keywords})
     return {result1,result2}
   },
 

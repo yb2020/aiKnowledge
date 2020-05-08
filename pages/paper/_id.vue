@@ -34,14 +34,69 @@
           <div class="text">引用</div>
         </div>
 
-        <div class="infoTitle">
-          <h4>摘要</h4>
-          <p style="text-indent: 28px ;">
-            {{paper.summary}}
-          </p>
+        <div class="infoTitle" :key="'infoTitle1'">
+          <el-tabs v-model="activePaperName" @tab-click="handlePaperClick">
+            <el-tab-pane label="摘要" name="summary" key="summary">
+              <p style="text-indent: 28px ;">
+                {{paper.summary}}
+                <el-button style="padding: 0px" @click="toggleShowSummary" v-if="!paper.isFull" type="text">{{paper.displayShort ? "展开" : "收起"}}<i :class="paper.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
+              </p>
+            </el-tab-pane>
+            <el-tab-pane label="翻译" name="translate" key="translate">
+              <p><b>AI翻译</b></p>
+              <p style="text-indent: 28px ;" v-if="paper.ext && paper.ext.botTranslateSummary">
+                {{paper.ext.botTranslateSummary}}
+                <el-button style="padding: 0px" @click="toggleShowBotTranslateSummary" v-if="!paper.ext.isFull" type="text">
+                  {{paper.ext.displayShort ? "展开" : "收起"}}
+                  <i :class="paper.ext.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" />
+                </el-button>
+              </p>
+              <div style="padding-top: 10px" v-if="paper.ext && paper.ext.translateSummary">
+                <p><b>人工翻译</b></p>
+                <p>{{paper.ext.translateSummary}}</p>
+              </div>
+              <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.translateSummary">
+                <b>人工翻译</b>
+                {{paper.ext.translateSummary}}
+                <el-form ref="extForm.summaryForm" :model="extForm.summaryForm" label-width="0px" :rules="extForm.summaryFormRules" class="edit-ruleForm">
+                  <el-row :gutter="24">
+                    <el-col :span="20">
+                      <el-form-item :label-width="'0px'" prop="translateSummary" required>
+                          <el-input type="textarea" v-model="extForm.summaryForm.translateSummary" clearable></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="2" justify="center" align="bottom">
+                      <el-button type="primary" :loading="submitLoading" @click="submitTranslateForm">提交翻译</el-button>
+                    </el-col>
+                  </el-row>
+                </el-form>
+              </p>
+            </el-tab-pane>
+            <el-tab-pane label="阅读指引" name="readingGuide" key="readingGuide">
+              <div v-if="paper.ext && paper.ext.translateSummary">
+                <p>{{paper.ext.readingGuide}}</p>
+              </div>
+              <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.readingGuide">
+                <b>阅读指引</b>
+                {{paper.ext.readingGuide}}
+                <el-form ref="extForm.readingGuideForm" :model="extForm.readingGuideForm" label-width="0px" :rules="extForm.readingGuideFormRules" class="edit-ruleForm">
+                  <el-row :gutter="24">
+                    <el-col :span="20">
+                      <el-form-item :label-width="'0px'" prop="readingGuide" required>
+                          <el-input type="textarea" v-model="extForm.readingGuideForm.readingGuide" clearable></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="2" justify="center" align="bottom">
+                      <el-button type="primary" :loading="submitLoading" @click="submitReadingGuideForm">提交</el-button>
+                    </el-col>
+                  </el-row>
+                </el-form>
+              </p>
+            </el-tab-pane>
+          </el-tabs>
         </div>
 
-        <div class="infoTitle">
+        <div class="infoTitle" :key="'infoTitle2'">
           <h4>链接</h4>
           <p>
             PDF:arxiv.org
@@ -51,45 +106,44 @@
           <p>论文资源: https://github.com/D-X-Y/ResNeXt-DenseNet/blob/master/README.md</p>
         </div>
 
-        <div class="infoTitle">
+        <div class="infoTitle" :key="'infoTitle3'">
           <h4>其他版本</h4>
-          <p>深度残差学习用于图像识别
-          </p>
+          <p>深度残差学习用于图像识别</p>
           <p>2015 arXiv：计算机视觉和模式识别</p>
         </div>
         
         
-        <div class="infoTitle">
+        <div class="infoTitle" :key="'infoTitle4'">
           <h4>相关学科</h4>
           <p>
-            <el-tag type="">
+            <el-tag type="" :key="`tag1`">
               <i class="el-icon-magic-stick" />消失梯度问题
             </el-tag>
-            <el-tag type="" >
+            <el-tag type="" :key="`tag2`">
               <i class="el-icon-magic-stick" />模式识别
             </el-tag>
-            <el-tag type="" >
+            <el-tag type="" :key="`tag3`">
               <i class="el-icon-magic-stick" />物体检测
             </el-tag>
-            <el-tag type="" >
+            <el-tag type="" :key="`tag4`">
               <i class="el-icon-magic-stick" />机器学习
             </el-tag>
-            <el-tag type="" >
+            <el-tag type="" :key="`tag5`">
               <i class="el-icon-magic-stick" />MNIST数据库
             </el-tag>
-            <el-tag type="" >
+            <el-tag type="" :key="`tag6`">
               <i class="el-icon-magic-stick" />深度学习
             </el-tag>
-            <el-tag type="" >
+            <el-tag type="" :key="`tag7`">
               <i class="el-icon-magic-stick" />卷积神经网络
             </el-tag>
-            <el-tag type="" >
+            <el-tag type="" :key="`tag8`">
               <i class="el-icon-magic-stick" />计算机视觉
             </el-tag>
-            <el-tag type="" >
+            <el-tag type="" :key="`tag9`">
               <i class="el-icon-magic-stick" />计算机科学
             </el-tag>
-            <el-tag type="" >
+            <el-tag type="" :key="`tag10`">
               <i class="el-icon-magic-stick" />人工神经网络
             </el-tag>
           </p>
@@ -211,7 +265,7 @@ import listView from '~/components/detail/list'
 
 export default {
 
-  name: 'keywords',
+  name: 'paper',
 
   transition: 'fade',
 
@@ -276,7 +330,7 @@ export default {
   },
 
   async fetch ({ store, params }) {
-    let result2 = await store.dispatch('search/getPaperById', params)
+    let result2 = await store.dispatch('paper/getPaperById', params)
     let result1 = await store.dispatch('discuss/getDiscusses', { refId: params.id, pageSize: 10 })
     return {result1, result2}
   },
@@ -284,7 +338,11 @@ export default {
   data () {
     return {
       activeName: 'review',
+      activePaperName: 'summary',
       submitLoading: false,
+      currentPaper: {
+
+      },
       pageSizes: [8, 10, 12],
       refId: '',
       form: {
@@ -302,6 +360,26 @@ export default {
             { required: true, message: '请输入评论内容', trigger: 'blur' }
           ]
         }
+      },
+      extForm: {
+        summaryForm: {
+          translateSummary: ''
+        },
+        summaryFormRules: {
+          translateSummary: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入人工翻译内容', trigger: 'blur' }
+          ]
+        },
+        readingGuideForm: {
+          readingGuide: ''
+        },
+        readingGuideFormRules: {
+          readingGuide: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入阅读指引内容', trigger: 'blur' }
+          ]
+        }
       }
     }
   },
@@ -311,6 +389,86 @@ export default {
   },
 
   methods: {
+    async handlePaperClick(tab) {
+      switch(tab.name) {
+        case 'translate':
+          if(!this.paper.summary || this.paper.ext.translate ) {
+            return false
+          }
+          // let content = this.paper.displayShort ? this.paper.cacheSummary : this.paper.summary
+          // let result = await this.$store.dispatch('paper/botTranslate' , {content: content})
+          // let translateContent = result.data
+          // if(translateContent && translateContent.length > 200) {
+          //   this.paperExt.ext.cacheTranslate = translateContent
+          //   this.paperExt.ext.translate = translateContent.substring(0, 200) + '...'
+          //   this.paperExt.ext.displayShort = true
+          //   this.paperExt.ext.isFull = false
+          // }else {
+          //   this.paperExt.ext.translate = translateContent
+          //   this.paperExt.ext.isFull = true
+          // }
+          break;
+        case 'readingGuide':
+
+          break;
+      }
+    },
+    submitTranslateForm() {
+      this.$refs['extForm.summaryForm'].validate(async(valid) => {
+        if (valid) {
+          this.submitLoading = true
+          var editForm = JSON.parse(JSON.stringify(this.form.editForm))
+
+          const result = await this.$store.dispatch('paper/postPaperExt', {
+            refId: this.paper.id,
+            translateSummary: this.extForm.summaryForm.translateSummary
+          })
+
+          this.submitLoading = false
+          if (result.status === 0) {
+            this.$message.error(result.message)
+            return false
+          }
+          this.$message.success(result.message)
+
+          return false
+        } else {
+          this.$message.error('请根据错误提示修改评论数据！')
+          return false
+        }
+      })
+    },
+    submitReadingGuideForm() {
+      this.$refs['extForm.readingGuideForm'].validate(async(valid) => {
+        if (valid) {
+          this.submitLoading = true
+          var editForm = JSON.parse(JSON.stringify(this.form.editForm))
+
+          const result = await this.$store.dispatch('paper/postPaperExt', {
+            refId: this.paper.id,
+            readingGuide: this.extForm.readingGuideForm.readingGuide
+          })
+
+          this.submitLoading = false
+          if (result.status === 0) {
+            this.$message.error(result.message)
+            return false
+          }
+          this.$message.success(result.message)
+
+          return false
+        } else {
+          this.$message.error('请根据错误提示修改评论数据！')
+          return false
+        }
+      })
+    },
+    toggleShowBotTranslateSummary() {
+      this.$store.dispatch('paper/toggleShowBotTranslateSummary')
+    },
+    toggleShowSummary() {
+      this.$store.dispatch('paper/toggleShowSummary')
+    },
     toggleShow(index) {
       this.$store.dispatch('discuss/toggleShow', index)
     },
@@ -359,7 +517,8 @@ export default {
 
   computed: {
     paper() {
-      return this.$store.state.search.detail
+      this.currentPaper = this.$store.state.paper.detail
+      return this.currentPaper
     },
     discusses () {
       return this.$store.state.discuss.data
@@ -431,12 +590,12 @@ export default {
     font-size: 16px;
     border-top: 1px solid #f0f0f0;
     background: #FFFFFF ;
-    padding: 10px ;
+    padding: 20px ;
     line-height: 24px;
     display: flex;
 
     .left {
-      width: 50rem ;
+      width: 70rem ;
       font-size: 14px ;
       line-height: 24px ;
 
@@ -483,7 +642,7 @@ export default {
     }
 
     .right {
-      width: 40rem;
+      width: 30rem;
       padding-left: 10px ;
       height: 100% ;
     }

@@ -116,10 +116,6 @@ export const actions = {
     }
     return res;
 
-    setTimeout(async () => {
-
-      
-    }, 500);
   },
 
   // 根据ref-id获取评论列表

@@ -1,9 +1,13 @@
 <template>
     <div tag="div" class="aside" >
-      <div class="item" v-for="(paper,index) in list" :key="index" @click="forward(paper)">
+      <div class="item" v-for="(paper,index) in list" :key="index">
         <div class="title">
           <div class="text">
-            <div class="title"><i class="el-icon-document" />{{paper.title}}</div>
+            <div class="title">
+              <nuxt-link :to="`/paper/${paper.id}`">
+                <i class="el-icon-document" />{{paper.title}}
+              </nuxt-link>
+            </div>
             <div>2017 COMMUNICATIONS OF THE ACM</div>
             <div>*Alex Krizhevsky1,Ilya Sutskever1,Geoffrey E. Hinton2</div>
             <div>1 Google ,2 OpenAI</div>
@@ -33,6 +37,7 @@
         </div>
         <div class="content">
           {{paper.summary}}
+          <el-button style="padding: 0px" @click="toggleShowSummary(index + 1)" v-if="!paper.isFull" type="text">{{paper.displayShort ? "展开" : "收起"}}<i :class="paper.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
         </div>
       </div>
 
@@ -78,7 +83,7 @@
 <script>
 
 export default {
-  name: 'aside',
+  name: 'paperList',
   props:{
     list: {
       type: Array,
@@ -127,6 +132,9 @@ export default {
   },
 
   methods: {
+     toggleShowSummary(index) {
+      this.$store.dispatch('search/toggleShowSummary', index)
+    },
     forward(paper) {
       this.$router.push(`/paper/${paper.id}`);
     },
@@ -155,7 +163,6 @@ export default {
   .item {
     border-bottom: 1px solid #f0f0f0 ;
     padding: 20px ;
-    margin-bottom: 10px ;
     .title {
       display: flex;
       justify-content: space-between;
@@ -180,6 +187,5 @@ export default {
   }
   .item:hover {
     background: #F0F0F0 ;
-    cursor: pointer;
   }
 </style>

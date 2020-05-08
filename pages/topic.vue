@@ -573,6 +573,10 @@ export default {
           .text {
             font-size: 18px ;
             font-weight: bolder;
+            a:hover { 
+              color: #ff0000 ;
+              text-decoration: underline;
+            }
           }
         }
         .topic {

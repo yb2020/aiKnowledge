@@ -166,6 +166,22 @@ export function searchPaper (data) {
     data: data
   }).then(res => res.data).catch(err => console.error(err))
 }
+// 机器翻译
+export function botTranslate (data) {
+  return serviceApi({
+    url: serviceId + `/paper/translate`,
+    method: 'post',
+    data: data
+  }).then(res => res.data).catch(err => console.error(err))
+}
+// 提交论文扩展数据
+export function postPaperExt (data) {
+  return serviceApi({
+    url: serviceId + `/paper/postPaperExt`,
+    method: 'post',
+    data: data
+  }).then(res => res.data).catch(err => console.error(err))
+}
 // 获取论文详情
 export function getPaperById (data) {
   return serviceApi({

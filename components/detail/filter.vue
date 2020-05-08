@@ -249,7 +249,7 @@
 <script>
 
 export default {
-  name: 'aside',
+  name: 'listPaperFilter',
   data () {
     return {
       createDate: '',
@@ -411,7 +411,6 @@ export default {
     }
   }
 
-  .aside-friends {}
   
   .friends {
     display: flex;
