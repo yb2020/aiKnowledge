@@ -1,154 +1,120 @@
 <template>
   <div class="sitemap" :class="{'mobile': mobileLayout}">
-    <div class="banner">知识就是力量</div>
-
     <div class="topContent">
       <div class="left">
-        <div class="label">学术动态</div>
+        <div class="banner">知识就是力量</div>
 
-        <div class="news">
-          <div class="title"><span class="text"><i class="el-icon-s-help"></i>近期会议</span><span class="more"><a href="#">更多动态>></a></span></div>
-          <div class="content">
-            <ul>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-            </ul>
+        <div class="pointerContent">
+          <div class="item" v-for="(paper,index) in searchResult.list" :key="index">
+            <div class="imgInfo">
+              <i class="el-icon-picture-outline image"></i>
+              <div class="info">
+                <div>作者：何开明</div>
+                <div>期刊：XX</div>
+              </div>
+            </div>
+            <div class="summary">
+              <nuxt-link :to="`/paper/${paper.id}`">
+              <div class="title">
+                {{paper.title}}
+              </div>
+              <div class="content">
+                {{paper.summary}}
+              </div>
+              </nuxt-link>
+            </div>
           </div>
         </div>
 
-        <div class="news">
-          <div class="title"><span class="text"><i class="el-icon-news"></i>新闻</span><span class="more"><a href="#">更多动态>></a></span></div>
+        <div class="communityContent">
+          <div class="title">社区热点追踪</div>
           <div class="content">
-            <ul>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-              <li><a href="#"><span class="text">XX会议在京召开</span><span class="time">[2020-3-29]</span></a></li>
-            </ul>
+            <div class="item" v-for="(discuss, index) in discusses.data" :key="discuss.id">
+              <div class="communityTitle">{{discuss.title}}</div>
+              <div class="text">
+                {{discuss.content}}
+                <el-button @click="toggleShow(index)" v-if="!discuss.isFull" type="text">{{discuss.displayShort ? "阅读全文" : "收起全文"}}<i :class="discuss.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
+              </div>
+              <div class="link">
+                <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+                <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+                <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+                <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+                <div class="time">{{ discuss.createDate | dateFormat('MM-dd') }}</div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
+
+
       <div class="right">
-        <h4 class="title">论文收录</h4>
-        <div class="content">
-          <el-card class="box-card">
-            <div class="item" @click="forward('Publications')">
-              <div class="icon"><i class="el-icon-document" /></div>
-              <div class="rightText">
-                <div class="number">233,467,597</div>
-                <div class="text">论文</div>
-              </div>
-            </div> 
-          </el-card>
 
-          <el-card class="box-card">
-            <div class="item" @click="forward('Authors')">
-              <div class="icon"><i class="el-icon-user-solid" /></div>
-              <div class="rightText">
-                <div class="number">238,949,598</div>
-                <div class="text">作者</div>
-              </div>
+        <div class="statisticsPanel">
+          <div class="item blue" @click="forward('Publications')">
+            <div class="icon"><i class="el-icon-document" /></div>
+            <div class="rightText">
+              <div class="number">233,467,597</div>
+              <div class="text">论文</div>
             </div>
-          </el-card>
+          </div>
+
+          <div class="item red" @click="forward('Authors')">
+            <div class="icon"><i class="el-icon-user-solid" /></div>
+            <div class="rightText">
+              <div class="number">238,949,598</div>
+              <div class="text">作者</div>
+            </div>
+          </div>
+
+          <div class="item green" @click="forward('Topics')">
+            <div class="icon"><i class="el-icon-s-help" /></div>
+            <div class="rightText">
+              <div class="number">710,937</div>
+              <div class="text">会议</div>
+            </div>
+          </div>
+          
+          <div class="item blue" @click="forward('Journals')">
+            <div class="icon"><i class="el-icon-location" /></div>
+            <div class="rightText">
+              <div class="number">4,456</div>
+              <div class="text">期刊</div>
+            </div>
+          </div>
+
+          <div class="item red" @click="forward('Journals')">
+            <div class="icon"><i class="el-icon-notebook-1" /></div>
+            <div class="rightText">
+              <div class="number">48,858</div>
+              <div class="text">学科</div>
+            </div>
+          </div>
+
+          <div class="item green" @click="forward('Institutions')">
+            <div class="icon"><i class="el-icon-school" /></div>
+            <div class="rightText">
+              <div class="number">25,562</div>
+              <div class="text">大学</div>  
+            </div>
+          </div>
 
         </div>
 
-        <div class="content">
-          <el-card class="box-card">
-            <div class="item" @click="forward('Topics')">
-              <div class="icon"><i class="el-icon-s-help" /></div>
-              <div class="rightText">
-                <div class="number">710,937</div>
-                <div class="text">会议</div>
-              </div>
-            </div>
-          </el-card>
-        
-          <el-card class="box-card">
-             <div class="item" @click="forward('Journals')">
-              <div class="icon"><i class="el-icon-location" /></div>
-              <div class="rightText">
-                <div class="number">4,456</div>
-                <div class="text">期刊</div>
-              </div>
-            </div>
-          </el-card>
-        </div>
+        <transition name="fade" mode="">
+          <my-footer v-if="!isError && !isWelcome"></my-footer>        
+        </transition>
 
-        <div class="content">
-          <el-card class="box-card">
-             <div class="item" @click="forward('Journals')">
-                <div class="icon"><i class="el-icon-notebook-1" /></div>
-                <div class="rightText">
-                  <div class="number">48,858</div>
-                  <div class="text">学科</div>
-                </div>
-              </div>
-          </el-card>
-
-          <el-card class="box-card">
-            <div class="item" @click="forward('Institutions')">
-              <div class="icon"><i class="el-icon-school" /></div>
-              <div class="rightText">
-                <div class="number">25,562</div>
-                <div class="text">大学</div>  
-              </div>
-            </div>
-          </el-card>
-        </div>
       </div>
     </div>
 
-    <div class="pointerContent">
-      <div class="item" v-for="(paper,index) in searchResult.list" :key="index">
-        <div class="imgInfo">
-          <i class="el-icon-picture-outline image"></i>
-          <div class="info">
-            <div>作者：何开明</div>
-            <div>期刊：XX</div>
-          </div>
-        </div>
-        <div class="summary">
-          <nuxt-link :to="`/paper/${paper.id}`">
-          <div class="title">
-            {{paper.title}}
-          </div>
-          <div class="content">
-            {{paper.summary}}
-          </div>
-          </nuxt-link>
-        </div>
-      </div>
-    </div>
-
-    <div class="communityContent">
-      <div class="title">社区热点追踪</div>
-      <div class="content">
-        <div class="item" v-for="(discuss, index) in discusses.data" :key="discuss.id">
-          <div class="communityTitle">{{discuss.title}}</div>
-          <div class="text">
-            {{discuss.content}}
-            <el-button @click="toggleShow(index)" v-if="!discuss.isFull" type="text">{{discuss.displayShort ? "阅读全文" : "收起全文"}}<i :class="discuss.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
-          </div>
-          <div class="link">
-            <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-            <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-            <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-            <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-            <div class="time">{{ discuss.createDate | dateFormat('MM-dd') }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
   </div>
 </template>
 
 <script>
+
+import myFooter from '~/components/layouts/footer'
 
 export default {
   name: 'sitemap',
@@ -156,6 +122,10 @@ export default {
   scrollToTop: true,
 
   transition: 'fade',
+
+  components: {
+    myFooter
+  },
 
   head() {
     return {
@@ -239,6 +209,14 @@ export default {
     tag () {
       console.log(this.$store.state.tag.data)
       return this.$store.state.tag.data
+    },
+
+    isWelcome () {
+      return false;
+    },
+
+    isError () {
+      return this.$store.state.options.isError
     },
 
     option () {
@@ -357,87 +335,219 @@ export default {
 .sitemap {
   margin: 0 auto;
 
-  .banner {
-    width: 90rem;
-    margin: auto;
-    height: 5rem;
-    background: $blue ;
-    font-size: 20px ;
-    text-align: center ;
-    align-content: center ;
-    line-height: 5rem ;
-    color: #FFFFFF ;
-  }
-
   .topContent {
     margin:auto ;
     margin-top: 10px ;
-    width: 90rem;
+    width: 1000;
     display: flex;
     display: -webkit-flex; /* Safari */
     justify-content: space-around;
 
-    .left {
-      width: 44rem;
-      background: #ffffff;
 
-      .label {
-        background: $blue;
-        font-size: 14px ;
+    .left {
+      width: 700px ;
+
+      .banner {
+        height: 5rem;
+        background: $blue ;
+        border-radius: 4px ;
+        font-size: 40px ;
+        text-align: center ;
+        align-content: center ;
+        line-height: 5rem ;
         color: #FFFFFF ;
-        padding: 10px ;
       }
 
-      .news {
-        padding: 10px ;
+      .pointerContent {
+        margin-top: 10px ;
+        background: #FFFFFF ;
+        border-radius: 2px ;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.03);
 
-        .title {
-          font-size: 14px ;
-          color: #333333 ;
-          padding: 10px ;
-          border-bottom: 1px solid #f0f0f0 ;
+
+        .item {
+          padding: 16px 20px;
+          border-bottom: 1px solid #F0F0F0;
           display: flex;
           display: -webkit-flex; /* Safari */
           justify-content: space-between;
-          .more {
-            a {
-              color: $blue;
+
+          .imgInfo {
+            width: 6rem;
+            .image {
+              width: 6rem ;
+              height: 6rem ;
+              border: 1px solid #f0f0f0;
+              border-radius: 4px;
+              font-size: 6rem;
+              color: #aaaaaa ;
             }
-          }
-        }
-
-        .content {
-          width: auto ;
-          padding: 10px ;
-
-          li {
-            padding: 2px 0px ;
-
-            a {
-              color: #333333 ;
-              display: flex;
-              display: -webkit-flex; /* Safari */
-              justify-content: space-between;
-
-              .time {
-                color: #999 ;
-                font-style: italic ;
+            .info {
+              font-size: 14px;
+              padding-top: 10px ;
+              div {
+                line-height: 24px ;
               }
             }
+          }
+          .summary {
+            padding-left: 1rem ;
 
+            .title {
+              font-size: 16px ;
+              font-weight: bolder;
+            }
+            
             a:hover { 
               color: #ff0000 ;
               text-decoration: underline;
             }
+
+            .content {
+              padding: 5px ;
+              text-indent: 28px;
+              font-size: 14px;
+              line-height: 24px;
+              height: 100px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
           }
         }
       }
+
+      .communityContent {
+        margin:auto ;
+        margin-top: 10px ;
+
+        .title {
+          background: $blue ;
+          text-align: center ;
+          color: #FFFFFF ;
+          padding: 10px 0px ;
+          border-radius: 2px 2px 0px 0px ;
+        }
+        .content {
+          background: #FFFFFF ;
+          .item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f0f0f0 ;
+
+            .communityTitle {
+              text-align: left;
+              color: #333333 ;
+              font-size: 16px ;
+              font-weight: bolder;
+              padding: 0px ;
+              padding-top: 10px ;
+            }
+            .text {
+              padding: 10px 0px ;
+            }
+            .link {
+              font-size: 12px ;
+              color: #888 ;
+              display: flex;
+              align-items: center;
+              i {
+                font-size: 12px ;
+              }
+              .time {
+                display: inline;
+                padding-left: 10px ;
+              }
+            }
+          }
+
+          .item:hover {
+            background: #f0f0f0;
+          }
+        }
+      }
+
+
+
     }
 
     .right {
-      width: 44rem;
-      padding: 10px;
-      background-color: #FFFFFF;
+      width: 300px;
+      margin-left: 10px ;
+
+      .statisticsPanel {
+        background: #FFFFFF ;
+        border-radius: 2px ;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.03);
+
+        .item {
+          display: flex;
+          display: -webkit-flex; /* Safari */
+          justify-content: left;
+          padding: 20px;
+
+          .icon {
+            background: #c7e3fe;
+            border-radius: 50%;
+            width: 3rem ;
+            height: 3rem ;
+            text-align: center;
+            i {
+              padding: .4rem;
+              font-size: 1.8em;
+              vertical-align: middle;
+            }
+          }
+
+          .rightText {
+            padding-left: 10px;
+
+            .number {
+              font-size: 1.2rem;
+            }
+            .text {
+              font-size: 0.8rem;
+              font-style: italic;
+            }
+          }
+        }
+        .blue {
+            .icon {
+              background: #c7e3fe;
+            }
+            i {
+              color: $blue;
+            }
+            .rightText {
+              color: $blue;
+            }
+          }
+          .red {
+            .icon {
+              background: #fef0f0;
+            }
+            i {
+              color: #f36d6f;
+            }
+            .rightText {
+              color: #f36d6f;
+            }
+          }
+          .green {
+            .icon {
+              background: #f0f9ec;
+            }
+            i {
+              color: #6ac144;
+            }
+            .rightText {
+              color: #6ac144;
+            }
+          }
+        .item:hover {
+          background: #f9f9f9;
+          cursor: pointer;
+        }
+
+      }
       
       .title {
         color: $blue;
@@ -496,115 +606,6 @@ export default {
     
   }
 
-  .pointerContent {
-    margin:auto ;
-    margin-top: 10px ;
-    width: 90rem;
-    display: flex;
-    display: -webkit-flex; /* Safari */
-    justify-content: space-around;
-    .item {
-      width: 29rem;
-      padding: 10px;
-      background-color: #FFFFFF;
-      display: flex;
-      display: -webkit-flex; /* Safari */
-      justify-content: space-between;
-      margin-left: 5px;
-      margin-right: 5px;
-
-      .imgInfo {
-        width: 8rem;
-        .image {
-          width: 8rem ;
-          height: 8rem ;
-          border: 1px solid #f0f0f0;
-          border-radius: 4px;
-          font-size: 8rem;
-          color: #aaaaaa ;
-        }
-        .info {
-          font-size: 14px;
-          padding-top: 10px ;
-          div {
-            line-height: 24px ;
-          }
-        }
-      }
-      .summary {
-        padding-left: 1rem ;
-
-        .title {
-          font-size: 16px ;
-          font-weight: bolder;
-        }
-        
-        a:hover { 
-          color: #ff0000 ;
-          text-decoration: underline;
-        }
-
-        .content {
-          padding: 5px ;
-          text-indent: 28px;
-          font-size: 14px;
-          line-height: 24px;
-          height: 100px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
-    }
-  }
-
-  .communityContent {
-    margin:auto ;
-    margin-top: 10px ;
-    width: 90rem;
-
-    .title {
-      background: $blue ;
-      text-align: center ;
-      color: #FFFFFF ;
-      padding: 10px 0px ;
-    }
-    .content {
-      background: #FFFFFF ;
-      .item {
-        padding: 10px ;
-        border-bottom: 1px solid #f0f0f0 ;
-
-        .communityTitle {
-          text-align: left;
-          color: #333333 ;
-          font-size: 16px ;
-          font-weight: bolder;
-          padding: 0px ;
-          padding-top: 10px ;
-        }
-        .text {
-          padding: 10px 0px ;
-        }
-        .link {
-          font-size: 12px ;
-          color: #888 ;
-          display: flex;
-          align-items: center;
-          i {
-            font-size: 12px ;
-          }
-          .time {
-            display: inline;
-            padding-left: 10px ;
-          }
-        }
-      }
-
-      .item:hover {
-        background: #f0f0f0;
-      }
-    }
-  }
 
 }
 

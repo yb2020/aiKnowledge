@@ -8,9 +8,6 @@
     <div class="detailContent">
       <div class="tabContent">
         <div class="left">
-          <filterView />
-        </div>
-        <div class="right">
           <listView :list="searchResult.list" />
           <div class="pagination">
             <el-pagination
@@ -24,6 +21,14 @@
             />
           </div>
         </div>
+        <div class="right">
+          <filterView/>
+
+          <transition name="fade" mode="">
+            <my-footer v-if="!isError && !isWelcome"></my-footer>        
+          </transition>
+          
+        </div>
       </div>
     </div>
 
@@ -34,7 +39,7 @@
 import articleView from '~/components/common/article'
 import filterView from '~/components/detail/filter'
 import listView from '~/components/detail/list'
-
+import myFooter from '~/components/layouts/footer'
 
 export default {
 
@@ -133,7 +138,7 @@ export default {
   },
 
   components: {
-    articleView, filterView, listView
+    articleView, filterView, listView, myFooter
   },
 
   methods: {
@@ -183,6 +188,14 @@ export default {
   },
 
   computed: {
+    isWelcome () {
+      return false;
+      // return this.$store.state.options.isWelcome
+    },
+
+    isError () {
+      return this.$store.state.options.isError
+    },
     searchResult() {
       return this.$store.state.search.data
     },
@@ -241,6 +254,7 @@ export default {
     background: $blue ;
     color: #FFFFFF ;
     width: 100%;
+    margin-top: 10px;
     align-items: center;
     .icon {
       font-size: 2rem ;
@@ -251,7 +265,6 @@ export default {
   }
 
   .content {
-    width: 90rem;
     margin: auto;
     font-size: 16px;
     border-top: 1px solid #f0f0f0;
@@ -261,7 +274,6 @@ export default {
     display: flex;
 
     .left {
-      width: 50rem ;
       font-size: 14px ;
       line-height: 24px ;
 
@@ -316,17 +328,14 @@ export default {
     
   }
   .detailContent {
-    width: 90rem;
     margin: auto;
     font-size: 16px;
     border-top: 1px solid #f0f0f0;
-    background: #FFFFFF ;
-    padding: 10px ;
     line-height: 24px;
     
     .comment {
       .item {
-        padding: 10px ;
+        padding: 16px 20px;
         border-bottom: 1px solid #f0f0f0 ;
 
         .communityTitle {
@@ -375,14 +384,14 @@ export default {
     .tabContent {
       display: flex;
       justify-content: flex-start;
-      padding: 10px ;
       .left {
-        width: 300px ;
-        min-width: 300px;
+        width: 700px ;
+        background: #FFF;
       }
       .right {
-        width: calc(100%-310px) ;
-        padding-left: 10px ;
+        width: 300px ;
+        min-width: 300px;
+        margin-left: 10px ;
       }
     }
   }

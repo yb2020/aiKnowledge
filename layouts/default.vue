@@ -7,13 +7,14 @@
         v-click-outside="hideSide">
       <mobile-side ></mobile-side>
     </div>
+    <transition name="fade" mode="">
+      <div class="head-box" v-if="!isWelcome">
+        <mobile-header v-if="mobileLayout"></mobile-header>
+        <my-header v-else></my-header>
+      </div>    
+    </transition>
+
     <div class="app-main" :class="{ open: mobileSidebar }">
-      <transition name="fade" mode="">
-        <div class="head-box" v-if="!isWelcome">
-          <mobile-header v-if="mobileLayout"></mobile-header>
-          <my-header v-else></my-header>
-        </div>    
-      </transition>
 
       <transition-group
           tag="div" 
@@ -39,9 +40,9 @@
         </div> -->
       </transition-group>
       
-      <transition name="fade" mode="">
+      <!-- <transition name="fade" mode="">
         <my-footer v-if="!isError && !isWelcome"></my-footer>        
-      </transition>
+      </transition> -->
     </div>
     <scoll-top></scoll-top>
   </div>
@@ -86,16 +87,16 @@ export default {
       // return this.$store.state.options.isWelcome
     },
 
+    isError () {
+      return this.$store.state.options.isError
+    },
+
     mobileLayout () {
       return this.$store.state.options.mobileLayout
     },
 
     mobileSidebar () {
       return this.$store.state.options.mobileSidebar
-    },
-
-    isError () {
-      return this.$store.state.options.isError
     },
 
     pageLoading() {
@@ -149,6 +150,9 @@ export default {
 
   >.app-main {
     @include transition(all .3s ease-out);
+    width: 1000px ;
+    margin: 0px auto ;
+    padding-bottom: 20px;
 
     >.main-container {
       min-height: calc(100vh - 196px);

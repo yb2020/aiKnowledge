@@ -86,19 +86,17 @@ export default {
 
 footer {
   margin-top: $normal-pad;
-  padding: $normal-pad 0;
-  background: $white;
-  border-top: 1px solid $border-color;
+  padding: 20px;
   color: $text;
   font-size: 0.8rem ;
 
 
   >.container {
     display: flex;
-    justify-content: center;
+    justify-content: left;
 
     &.center {
-      justify-content: center;
+      justify-content: left;
     }
 
     &.copyright {

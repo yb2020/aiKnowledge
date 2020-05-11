@@ -314,9 +314,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+  .aside {
+    background: #fff; 
+    padding: 10px;
+  }
   .aside-item {
     margin-bottom: $normal-pad;
+    
   }
 
   .aside-item.hot-article,

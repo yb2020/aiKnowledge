@@ -1,5 +1,5 @@
 <template>
-  <div class="keywords">
+  <div class="deatil">
     <div class="title">
         <div class="icon"><i class="el-icon-document" /></div>
         <div class="text">{{paper.title}}</div>
@@ -35,87 +35,69 @@
         </div>
 
         <div class="infoTitle" :key="'infoTitle1'">
-          <no-ssr>
-            <el-tabs v-model="activePaperName" @tab-click="handlePaperClick">
-              <el-tab-pane label="摘要" name="summary" key="summary">
-                <p style="text-indent: 28px ;">
-                  {{paper.summary}}
-                  <el-button style="padding: 0px" @click="toggleShowSummary" v-if="!paper.isFull" type="text">{{paper.displayShort ? "展开" : "收起"}}<i :class="paper.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
-                </p>
-              </el-tab-pane>
-              <el-tab-pane label="翻译" name="translate" key="translate">
-                <p><b>AI翻译</b></p>
-                <p style="text-indent: 28px ;" v-if="paper.ext && paper.ext.botTranslateSummary">
-                  {{paper.ext.botTranslateSummary}}
-                  <el-button style="padding: 0px" @click="toggleShowBotTranslateSummary" v-if="!paper.ext.isFull" type="text">
-                    {{paper.ext.displayShort ? "展开" : "收起"}}
-                    <i :class="paper.ext.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" />
-                  </el-button>
-                </p>
-                <div style="padding-top: 10px" v-if="paper.ext && paper.ext.translateSummary">
-                  <p><b>人工翻译</b></p>
-                  <p>{{paper.ext.translateSummary}}</p>
-                </div>
-                <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.translateSummary">
-                  <b>人工翻译</b>
-                  {{paper.ext.translateSummary}}
-                  <el-form ref="extForm.summaryForm" :model="extForm.summaryForm" label-width="0px" :rules="extForm.summaryFormRules" class="edit-ruleForm">
-                    <el-row :gutter="24">
-                      <el-col :span="20">
-                        <el-form-item :label-width="'0px'" prop="translateSummary" required>
-                            <el-input type="textarea" v-model="extForm.summaryForm.translateSummary" clearable></el-input>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :span="2" justify="center" align="bottom">
-                        <el-button type="primary" :loading="submitLoading" @click="submitTranslateForm">提交翻译</el-button>
-                      </el-col>
-                    </el-row>
-                  </el-form>
-                </p>
-              </el-tab-pane>
-              <el-tab-pane label="阅读指引" name="readingGuide" key="readingGuide">
-                <div v-if="paper.ext && paper.ext.translateSummary">
-                  <p>{{paper.ext.readingGuide}}</p>
-                </div>
-                <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.readingGuide">
-                  <b>阅读指引</b>
-                  {{paper.ext.readingGuide}}
-                  <el-form ref="extForm.readingGuideForm" :model="extForm.readingGuideForm" label-width="0px" :rules="extForm.readingGuideFormRules" class="edit-ruleForm">
-                    <el-row :gutter="24">
-                      <el-col :span="20">
-                        <el-form-item :label-width="'0px'" prop="readingGuide" required>
-                            <el-input type="textarea" v-model="extForm.readingGuideForm.readingGuide" clearable></el-input>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :span="2" justify="center" align="bottom">
-                        <el-button type="primary" :loading="submitLoading" @click="submitReadingGuideForm">提交</el-button>
-                      </el-col>
-                    </el-row>
-                  </el-form>
-                </p>
-              </el-tab-pane>
-            </el-tabs>
-          </no-ssr>
+          <h4>摘要</h4>
+          <p style="text-indent: 28px ;">
+            {{paper.summary}}
+            <el-button style="padding: 0px" @click="toggleShowSummary" v-if="!paper.isFull" type="text">{{paper.displayShort ? "展开" : "收起"}}<i :class="paper.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
+          </p>
+        </div>
+
+        <div class="infoTitle" :key="'infoTitle1'">
+          <h4>翻译</h4>
+          <p><b>AI翻译</b></p>
+          <p style="text-indent: 28px ;" v-if="paper.ext && paper.ext.botTranslateSummary">
+            {{paper.ext.botTranslateSummary}}
+            <el-button style="padding: 0px" @click="toggleShowBotTranslateSummary" v-if="!paper.ext.isFull" type="text">
+              {{paper.ext.displayShort ? "展开" : "收起"}}
+              <i :class="paper.ext.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" />
+            </el-button>
+          </p>
+
+          <div style="padding-top: 10px" v-if="paper.ext && paper.ext.translateSummary">
+            <p><b>人工翻译</b></p>
+            <p>{{paper.ext.translateSummary}}</p>
+          </div>
+          <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.translateSummary">
+            <b>人工翻译</b>
+            {{paper.ext.translateSummary}}
+            <el-form ref="extForm.summaryForm" :model="extForm.summaryForm" label-width="0px" :rules="extForm.summaryFormRules" class="edit-ruleForm">
+              <el-row :gutter="24">
+                <el-col :span="20">
+                  <el-form-item :label-width="'0px'" prop="translateSummary" required>
+                      <el-input type="textarea" v-model="extForm.summaryForm.translateSummary" clearable></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="2" justify="center" align="bottom">
+                  <el-button type="primary" :loading="submitLoading" @click="submitTranslateForm">提交翻译</el-button>
+                </el-col>
+              </el-row>
+            </el-form>
+          </p>
         </div>
 
         <div class="infoTitle" :key="'infoTitle2'">
-          <h4>链接</h4>
-          <p>
-            PDF:arxiv.org
+          <h4>阅读指引</h4>
+          <div v-if="paper.ext && paper.ext.translateSummary">
+            <p>{{paper.ext.readingGuide}}</p>
+          </div>
+          <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.readingGuide">
+            {{paper.ext.readingGuide}}
+            <el-form ref="extForm.readingGuideForm" :model="extForm.readingGuideForm" label-width="0px" :rules="extForm.readingGuideFormRules" class="edit-ruleForm">
+              <el-row :gutter="24">
+                <el-col :span="20">
+                  <el-form-item :label-width="'0px'" prop="readingGuide" required>
+                      <el-input type="textarea" v-model="extForm.readingGuideForm.readingGuide" clearable></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="2" justify="center" align="bottom">
+                  <el-button type="primary" :loading="submitLoading" @click="submitReadingGuideForm">提交指引</el-button>
+                </el-col>
+              </el-row>
+            </el-form>
           </p>
-          <p>站点:dblp.uni-trier.de | doi.ieeecomputersociety.org | openaccess.thecvf.com | doi.org | ieeexplore.ieee.org | scinapse.io | ui.adsabs.harvard.edu | arxiv-vanity.com | cv-foundation.org | xplqa30.ieee.org</p>
-          <p>附加链接:arxiv.org | dx.doi.org | ieeexplore.ieee.org</p>
-          <p>论文资源: https://github.com/D-X-Y/ResNeXt-DenseNet/blob/master/README.md</p>
         </div>
 
-        <div class="infoTitle" :key="'infoTitle3'">
-          <h4>其他版本</h4>
-          <p>深度残差学习用于图像识别</p>
-          <p>2015 arXiv：计算机视觉和模式识别</p>
-        </div>
-        
-        
-        <div class="infoTitle" :key="'infoTitle4'">
+        <div class="infoTitle">
           <h4>相关学科</h4>
           <p>
             <el-tag type="" :key="`tag1`">
@@ -149,17 +131,19 @@
               <i class="el-icon-magic-stick" />人工神经网络
             </el-tag>
           </p>
-          <p style="padding-top: 10px ;"> 
-            <el-button size="mini" type="primary">关注</el-button>
-            <el-button size="mini" type="primary">要求</el-button>
-
-            <el-button-group style="padding-left: 10px ;">
-              <el-button size="mini" icon="el-icon-edit" type="primary"></el-button>
-              <el-button size="mini" icon="el-icon-document" type="primary"></el-button>
-              <el-button size="mini" icon="el-icon-share" type="primary"></el-button>
-            </el-button-group>
-          </p>
         </div>
+
+        <div class="infoTitle">
+          <el-button size="mini" type="primary">关注</el-button>
+          <el-button size="mini" type="primary">要求</el-button>
+
+          <el-button-group style="padding-left: 10px ;">
+            <el-button size="mini" icon="el-icon-edit" type="primary"></el-button>
+            <el-button size="mini" icon="el-icon-document" type="primary"></el-button>
+            <el-button size="mini" icon="el-icon-share" type="primary"></el-button>
+          </el-button-group>
+        </div>
+
       </div>
 
       <div class="right">
@@ -173,6 +157,31 @@
             </div>
           </div>
         </el-card>
+
+        <el-card style="margin-top: 10px ">
+          <div slot="header" class="clearfix">
+            <span>链接</span>
+          </div>
+          <div class="infoTitle">
+            <p>
+              PDF:arxiv.org
+            </p>
+            <p>站点:dblp.uni-trier.de | doi.ieeecomputersociety.org | openaccess.thecvf.com | doi.org | ieeexplore.ieee.org | scinapse.io | ui.adsabs.harvard.edu | arxiv-vanity.com | cv-foundation.org | xplqa30.ieee.org</p>
+            <p>附加链接:arxiv.org | dx.doi.org | ieeexplore.ieee.org</p>
+            <p>论文资源: https://github.com/D-X-Y/ResNeXt-DenseNet/blob/master/README.md</p>
+          </div>
+        </el-card>
+
+        <el-card style="margin-top: 10px ">
+          <div slot="header" class="clearfix">
+            <span>其他版本</span>
+          </div>
+          <div class="infoTitle">
+            <p>深度残差学习用于图像识别</p>
+            <p>2015 arXiv：计算机视觉和模式识别</p>
+          </div>
+        </el-card>
+
       </div>
       
     </div>
@@ -239,11 +248,11 @@
         </el-tab-pane>
         <el-tab-pane label="参考文献" name="reference">
           <div class="tabContent">
-            <div class="left">
-              <filterView />
-            </div>
-            <div class="right">
+            <div class="tabContentLeft">
               <listView />
+            </div>
+            <div class="tabContentRight">
+              <filterView />
             </div>
           </div>
         </el-tab-pane>
@@ -546,11 +555,12 @@ export default {
 
 <style scoped lang="scss">
 
-.keywords {
+.deatil {
     > .title {
     position: relative;
     display: flex;
     align-items: center;
+    margin-top: 10px ;
     padding: 0.5rem 0rem;
     line-height: 1.5rem;
     font-size: 1rem;
@@ -583,23 +593,20 @@ export default {
     }
     .text {
       font-size: 2rem ;
+      line-height: 2.2rem ;
     }
   }
 
   .content {
-    width: 90rem;
     margin: auto;
-    font-size: 16px;
-    border-top: 1px solid #f0f0f0;
-    background: #FFFFFF ;
-    padding: 20px ;
-    line-height: 24px;
     display: flex;
 
     .left {
-      width: 70rem ;
+      width: 700px ;
       font-size: 14px ;
       line-height: 24px ;
+      padding: 16px 20px;
+      background: #fff;
 
       .references {
         display: flex;
@@ -620,11 +627,15 @@ export default {
         }
       }
 
+
+      .authorInfo {
+        display: flex;
+        justify-content: left;
+        width: 100%;
+      }
+
       .infoTitle {
-        padding-top: 20px ;
-        > h4 {
-          padding: 5px 0px ;
-        }
+        margin-top: 10px;
         > p {
           font-size: 14px ;
         }
@@ -632,37 +643,36 @@ export default {
           margin-top: 10px ;
         }
       }
-
-      
-
-      .authorInfo {
-        display: flex;
-        justify-content: left;
-        width: 100%;
-
-      }
     }
 
     .right {
-      width: 30rem;
-      padding-left: 10px ;
-      height: 100% ;
+      width: 300px;
+      margin-left: 10px ;
+
+      .infoTitle {
+        > p {
+          font-size: 14px ;
+        }
+        .el-tag {
+          margin-top: 10px ;
+        }
+      }
     }
     
     
   }
   .detailContent {
-    width: 90rem;
     margin: auto;
+    margin-top: 10px;
     font-size: 16px;
-    border-top: 1px solid #f0f0f0;
-    background: #FFFFFF ;
-    padding: 10px ;
     line-height: 24px;
-    
+    background: #FFF;
+    padding: 10px;
+
     .comment {
+
       .item {
-        padding: 10px ;
+        padding: 10px 10px ;
         border-bottom: 1px solid #f0f0f0 ;
 
         .communityTitle {
@@ -699,13 +709,12 @@ export default {
     .pagination {
       margin:auto ;
       margin-top: 10px ;
-      width: 90rem;
       padding: 10px ;
+      background: #FFF;
     }
     .communityForm {
       margin:auto ;
       margin-top: 10px ;
-      width: 90rem;
     }
     
 
@@ -713,13 +722,13 @@ export default {
       display: flex;
       justify-content: flex-start;
       padding: 10px ;
-      .left {
-        width: 300px ;
-        min-width: 300px;
+      .tabContentLeft {
+        width: 700px ;
+        background: #FFF;
       }
-      .right {
-        width: calc(100%-310px) ;
-        padding-left: 10px ;
+      .tabContentRight {
+        width: 300px;
+        margin-left: 10px ;
       }
     }
   }

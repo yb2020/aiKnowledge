@@ -348,11 +348,11 @@ export default {
   margin: 0 auto;
 
   .banner {
-    width: 90rem;
     margin: auto;
+    margin-top: 10px ;
     height: 5rem;
     background: $blue ;
-    font-size: 20px ;
+    font-size: 2rem ;
     text-align: center ;
     align-content: center ;
     line-height: 5rem ;
@@ -362,7 +362,6 @@ export default {
   .topContent {
     margin:auto ;
     margin-top: 10px ;
-    width: 90rem;
     display: flex;
     display: -webkit-flex; /* Safari */
     justify-content: space-around;
@@ -536,7 +535,6 @@ export default {
   .communityContent {
     margin:auto ;
     margin-top: 10px ;
-    width: 90rem;
 
     .title {
       background: $blue ;
@@ -661,14 +659,12 @@ export default {
   .pagination {
     margin:auto ;
     margin-top: 10px ;
-    width: 90rem;
     background: #FFFFFF;
     padding: 10px ;
   }
   .communityForm {
     margin:auto ;
     margin-top: 10px ;
-    width: 90rem;
   }
 
 }

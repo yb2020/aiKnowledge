@@ -241,11 +241,13 @@ header {
   >.header {
     position: relative;
     display: flex;
+    margin:  0px auto;
     justify-content: space-between;
     align-items: center;
+    width: 1000px;
     min-width: $container-width;
     //padding: 0 $lg-pad;
-    padding: 0 1rem;
+    // padding: 0 1rem;
     line-height: $header-height;
 
     >.header-left {
@@ -321,7 +323,7 @@ header {
   }
 
   .search {
-    width: 35rem ;
+    width: 24rem ;
   }
 
   .search-box {
