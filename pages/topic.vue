@@ -352,6 +352,7 @@ export default {
     margin-top: 10px ;
     height: 5rem;
     background: $blue ;
+    border-radius: 4px ;
     font-size: 2rem ;
     text-align: center ;
     align-content: center ;
@@ -540,6 +541,7 @@ export default {
       background: $blue ;
       text-align: center ;
       color: #FFFFFF ;
+      border-radius: 2px 2px 0px 0px;
       padding: 10px 14px ;
       display: flex ;
       justify-content: space-between ;

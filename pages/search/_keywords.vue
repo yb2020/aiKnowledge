@@ -27,7 +27,7 @@
           <transition name="fade" mode="">
             <my-footer v-if="!isError && !isWelcome"></my-footer>        
           </transition>
-          
+
         </div>
       </div>
     </div>
@@ -230,6 +230,7 @@ export default {
     align-items: center;
     padding: 0.5rem 0rem;
     line-height: 1.5rem;
+    border-radius: 4px 4px 0px 0px;
     font-size: 1rem;
     font-weight: normal;
 

@@ -560,6 +560,7 @@ export default {
     position: relative;
     display: flex;
     align-items: center;
+    border-radius: 4px 4px 0px 0px;
     margin-top: 10px ;
     padding: 0.5rem 0rem;
     line-height: 1.5rem;
