@@ -172,7 +172,7 @@
             </div>
           </div>
           
-          <div class="item blue" @click="forward('Journals')">
+          <div class="item blue" @click="forward('Conferences')">
             <div class="icon"><i class="el-icon-location" /></div>
             <div class="rightText">
               <div class="number">4,456</div>
@@ -387,22 +387,26 @@ export default {
           return ;
         case 'Topics': 
           route = "topics"
+          this.$router.push(route + "/1" );
         break ;
         case 'Authors': 
           route = "authors"
+          this.$router.push(route + "/2200192130" );
         break ;
         case 'Conferences': 
           route = "conferences"
+          this.$router.push(route + "/1" );
         break ;
         case 'Journals': 
           route = "journals"
+          this.$router.push(route + "/1" );
         break ;
         case 'Institutions': 
           route = "institutions"
+          this.$router.push(route + "/63966007" );
         break ;
         default: 
       }
-      this.$router.push(route + "/1" );
 
     },
     handleSelect(item) {

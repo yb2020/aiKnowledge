@@ -84,59 +84,69 @@
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="热门讨论" name="review">
           <div class="comment">
-            <div class="item">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-              <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
+            <div class="item" v-for="(discuss, index) in discusses.list" :key="discuss.id">
+              <div class="communityTitle">{{discuss.title}}</div>
+              <div class="text"  >
+                {{discuss.content}}
+                <el-button @click="toggleShow(index)" v-if="!discuss.isFull" type="text">{{discuss.displayShort ? "阅读全文" : "收起全文"}}<i :class="discuss.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
+              </div>
+
               <div class="link">
                 <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
                 <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
                 <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
                 <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                <div class="time">刚刚</div>
+                <div class="time">{{ discuss.createDate | dateFormat('MM-dd') }}</div>
               </div>
             </div>
-            <div class="item">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-              <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-              <div class="link">
-                <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                <div class="time">刚刚</div>
+          </div>
+
+          <div class="pagination">
+            <el-pagination
+              :current-page.sync="discusses.pageNum"
+              :page-sizes="pageSizes"
+              :page-size="discusses.pageSize"
+              :total="discusses.total"
+              layout="total, sizes, prev, pager, next, jumper"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+            />
+          </div>
+
+          <div class="communityForm">
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>发表评论</span>
+                <!-- <span>0条评论</span>
+                <el-button style="float: right; padding: 3px 0" type="text">切换为时间排序</el-button> -->
               </div>
-            </div>
-            <div class="item">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-              <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-              <div class="link">
-                <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                <div class="time">刚刚</div>
+              <div class="formWapper">
+                <el-form ref="form.editForm" :model="form.editForm" label-width="0px" :rules="form.editFormRules" class="edit-ruleForm">
+                  <el-row :gutter="24">
+                    <el-col :span="22">
+                      <el-form-item :label-width="'0px'" prop="title" required>
+                        <el-input v-model="form.editForm.title" clearable></el-input>
+                      </el-form-item>
+                      <el-form-item :label-width="'0px'" prop="content" required>
+                        <el-input type="textarea" v-model="form.editForm.content" clearable></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="2" justify="center" align="bottom">
+                      <el-button type="primary" :loading="submitLoading" @click="submitForm">发表</el-button>
+                    </el-col>
+                  </el-row>
+                </el-form>
               </div>
-            </div>
-            <div class="item">
-              <div class="communityTitle">Resnet到底在解决一个什么问题呢？</div>
-              <div class="text">薰风初入弦：上述的内容是我以自己的角度思考作者提出ResNet的心路历程，我比作者蔡很多，所以难免出现思考不全的地方。 ResNet是如此...<el-button type="text">阅读全文<i class="el-icon-caret-bottom" /></el-button></div>
-              <div class="link">
-                <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
-                <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
-                <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
-                <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
-                <div class="time">刚刚</div>
-              </div>
-            </div>
+            </el-card>
           </div>
         </el-tab-pane>
         <el-tab-pane label="刊物" name="reference">
           <div class="tabContent">
-            <div class="left">
-              <filterView />
-            </div>
-            <div class="right">
+            <div class="tabContentLeft">
               <listView />
+            </div>
+            <div class="tabContentRight">
+              <filterView />
             </div>
           </div>
         </el-tab-pane>
@@ -219,16 +229,37 @@ export default {
     }
   },
 
-  fetch ({ store, params }) {
-    return store.dispatch('article/getArtList', {
-      ...params,
-      page_size: 100
-    })
+  async fetch ({ store, params }) {
+    let result1 = await store.dispatch('discuss/getDiscusses', { refId: params.id, pageSize: 10 })
+    return result1
   },
 
   data () {
     return {
-      activeName: 'review'
+      activeName: 'review',
+      submitLoading: false,
+      currentPaper: {
+
+      },
+      pageSizes: [8, 10, 12],
+      refId: '',
+      form: {
+        editForm: {
+          title: '',
+          content: ''
+        },
+        editFormRules: {
+          title: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入评论标题', trigger: 'blur' }
+          ],
+          content: [
+            { min: 1, message: '长度必须大于1个字符', trigger: 'blur' },
+            { required: true, message: '请输入评论内容', trigger: 'blur' }
+          ]
+        }
+      }
+
     }
   },
 
@@ -239,10 +270,54 @@ export default {
   methods: {
     handleClick() {
       
+    },
+    toggleShow(index) {
+      this.$store.dispatch('discuss/toggleShow', index)
+    },
+    submitForm() {
+      this.$refs['form.editForm'].validate(async(valid) => {
+        if (valid) {
+          this.submitLoading = true
+          var editForm = JSON.parse(JSON.stringify(this.form.editForm))
+          
+          const result = await this.$store.dispatch('discuss/postDiscuss', {
+            title: this.form.editForm.title,
+            refId: this.$route.params.id,
+            content: this.form.editForm.content
+          })
+
+          this.submitLoading = false
+          if (result.status === 0) {
+            this.$message.error(result.message)
+            return false
+          }
+          this.$message.success(result.message)
+          this.$refs['form.editForm'].resetFields()
+          this.selectedTopic = null
+          
+          setTimeout(()=>{
+            window.location.href = window.location.href
+          }, 1000)
+
+          return false
+        } else {
+          this.$message.error('请根据错误提示修改评论数据！')
+          return false
+        }
+      })
+    },
+    handleCurrentChange() {
+      console.log("aaaa")
+    },
+    handleSizeChange() {
+      console.log("bbbb")
     }
   },
 
   computed: {
+    discusses () {
+      return this.$store.state.discuss.data
+    },
     mobileLayout () {
       return this.$store.state.options.mobileLayout
     },
@@ -281,7 +356,7 @@ export default {
   }
 
   .content {
-    width: 90rem;
+    width: 1000px;
     margin: auto;
     font-size: 16px;
     border-top: 1px solid #f0f0f0;
@@ -291,10 +366,10 @@ export default {
     display: flex;
 
     .left {
-      width: 15rem ;
+      width: 12rem ;
       text-align: center;
       .avatar {
-        width: 14rem ;
+        width: 10rem ;
         padding: 10px ;
         img {
           border-radius: 50%;
@@ -307,7 +382,6 @@ export default {
     }
 
     .right {
-      width: 75rem;
       padding-left: 10px ;
 
       .references {
@@ -354,18 +428,19 @@ export default {
     
     
   }
+
   .detailContent {
-    width: 90rem;
     margin: auto;
+    margin-top: 10px;
     font-size: 16px;
-    border-top: 1px solid #f0f0f0;
-    background: #FFFFFF ;
-    padding: 10px ;
     line-height: 24px;
-    
+    background: #FFF;
+    padding: 10px;
+
     .comment {
+
       .item {
-        padding: 10px ;
+        padding: 10px 10px ;
         border-bottom: 1px solid #f0f0f0 ;
 
         .communityTitle {
@@ -398,19 +473,30 @@ export default {
         background: #f0f0f0;
       }
     }
+
+    .pagination {
+      margin:auto ;
+      margin-top: 10px ;
+      padding: 10px ;
+      background: #FFF;
+    }
+    .communityForm {
+      margin:auto ;
+      margin-top: 10px ;
+    }
     
 
     .tabContent {
       display: flex;
       justify-content: flex-start;
       padding: 10px ;
-      .left {
-        width: 300px ;
-        min-width: 300px;
+      .tabContentLeft {
+        width: 700px ;
+        background: #FFF;
       }
-      .right {
-        width: calc(100%-310px) ;
-        padding-left: 10px ;
+      .tabContentRight {
+        width: 300px;
+        margin-left: 10px ;
       }
     }
   }

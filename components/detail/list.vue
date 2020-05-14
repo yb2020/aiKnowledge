@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <div class="item">
+      <div class="item" v-if="!list">
         <div class="title">
           <div class="text">
             <div><i class="el-icon-document" />ImageNet classification with deep convolutional neural networks</div>
@@ -80,7 +80,7 @@ export default {
     list: {
       type: Array,
       default() {
-        return []
+        return null
       }
     }
   },
