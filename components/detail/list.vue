@@ -8,31 +8,23 @@
                 <i class="el-icon-document" />{{paper.title}}
               </nuxt-link>
             </div>
-            <div>2017 COMMUNICATIONS OF THE ACM</div>
-            <div>*Alex Krizhevsky1,Ilya Sutskever1,Geoffrey E. Hinton2</div>
+            <div>{{paper.year}} {{!paper.journalsList ? "" : paper.journalsList[0].name}}</div>
+            <div class="authorInfo">
+              <div class="author" v-for="(author,index) in paper.authorList" :key="index" v-if="index < 3">
+                {{author.name + ' ' + (index + 1) }}
+                <!-- {{Object.keys(paper.authorList).length}} -->
+              </div>
+            </div>
             <div>1 Google ,2 OpenAI</div>
           </div>
           <div class="right">
-            <p>82,542 citations * for all</p>
-            <p>22,654 citations *</p>
+            <p>{{paper.conference}} 引用</p>
           </div>
         </div>
 
         <div class="tag">
-          <el-tag type="" >
-            <i class="el-icon-magic-stick" />Vanishing gradient problem
-          </el-tag>
-          <el-tag type="" >
-            <i class="el-icon-magic-stick" />Test set
-          </el-tag>
-          <el-tag type="" >
-            <i class="el-icon-magic-stick" />Residual
-          </el-tag>
-          <el-tag type="" >
-            <i class="el-icon-magic-stick" />Pattern recognition
-          </el-tag>
-          <el-tag type="" >
-            <i class="el-icon-magic-stick" />Object detection
+          <el-tag v-for="(course,index) in paper.courseList" type="" :key="course.id" v-if="index < 4">
+            <i class="el-icon-magic-stick" />{{course.name}}
           </el-tag>
         </div>
         <div class="content">
@@ -174,10 +166,22 @@ export default {
         align-items: center;
       }
     }
+    .authorInfo {
+      display: flex;
+      justify-content: left;
+      width: 100%;
+      .author {
+        padding-right: 5px ;
+      }
+    }
+    .right {
+      width: 120px ;
+    }
     .tag {
+      margin-top: 10px ;
       .el-tag {
-        margin-top: 10px ;
         margin-bottom: 10px ;
+        margin-right: 10px ;
       }
     }
     .content {

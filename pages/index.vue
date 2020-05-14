@@ -5,6 +5,102 @@
         <div class="banner">知识就是力量</div>
 
         <div class="pointerContent">
+          
+          <div class="item">
+            <div class="imgInfo">
+              <img class="el-icon-picture-outline image" src="http://5b0988e595225.cdn.sohucs.com/images/20200425/a27d1ce247c849d0bc619ebc49fc0706.jpeg" />
+            </div>
+            <div class="summary">
+              <div class="title">
+                <nuxt-link :to="`/paper/2949117887`">
+                  世界上最顶尖的光刻机来自荷兰，荷兰的制造工艺
+                </nuxt-link>
+              </div>
+              <div class="content">
+                光刻机是顶级科技的合成体，也就是说光刻机决定着现代科技技术先进程度，光刻机是制造纳米芯片的核心设备...
+                <el-button style="padding: 0px" type="text">阅读全文<i :class="'el-icon-caret-bottom'" /></el-button>
+                <div class="link">
+                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+                  <div class="time">04-06</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="item">
+            <div class="imgInfo">
+              <img class="el-icon-picture-outline image" src="http://5b0988e595225.cdn.sohucs.com/images/20200511/898cc440f6f24672baa640ebcf7b8333.jpeg" />
+            </div>
+            <div class="summary">
+              <div class="title">
+                <nuxt-link :to="`/paper/2949117887`">
+                  正式打破国外封锁！国产电脑系统宣布：个人用户永久免费使用
+                </nuxt-link>
+              </div>
+              <div class="content">
+                中国目前的科技技术发展飞速，很多领域都已经走到了世界前列，但是有很多核心技术我们还没有掌握，比如像是Windows...
+                <el-button style="padding: 0px" type="text">阅读全文<i :class="'el-icon-caret-bottom'" /></el-button>
+                <div class="link">
+                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+                  <div class="time">04-06</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="summary onLeftPadding">
+              <div class="title">
+                <nuxt-link :to="`/paper/2949117887`">
+                 ICLR 2019最佳论文出炉：微软、MILA、MIT获奖
+                </nuxt-link>
+              </div>
+              <div class="content">
+                深度学习顶会 ICLR 2019 的两篇最佳论文现已放出，来自蒙特利尔大学、微软研究院和 MIT CSAIL 的研究者获得了最佳论文奖。其中一篇最佳论文探讨自然语言处理问题...
+                <el-button style="padding: 0px" type="text">阅读全文<i :class="'el-icon-caret-bottom'" /></el-button>
+                <div class="link">
+                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+                  <div class="time">04-06</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="imgInfo">
+              <img class="el-icon-picture-outline image" src="http://5b0988e595225.cdn.sohucs.com/images/20200511/0e76de5201fe4863a79086ae84a89d42.jpeg" />
+            </div>
+            <div class="summary">
+              <div class="title">
+                <nuxt-link :to="`/paper/2949117887`">
+                  2020年，5种将死的编程语言，不要浪费时间去学习了
+                </nuxt-link>
+              </div>
+              <div class="content">
+                2020年，5种将死的编程语言，不要浪费时间去学习了。曾几何时，几乎每个人都在使用Perl语言编程。但是那些经常使用的人慢慢地发现，关于这个...
+                <el-button style="padding: 0px" type="text">阅读全文<i :class="'el-icon-caret-bottom'" /></el-button>
+                <div class="link">
+                  <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-s-comment" style="color: #888888; font-weight: normal;">79条评论</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-share" style="color: #888888; font-weight: normal;">分享</el-button>
+                  <el-button type="text" size="mini" icon="el-icon-star-on" style="color: #888888; font-weight: normal;">收藏</el-button>
+                  <div class="time">04-06</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="pointerContent">
           <div class="item" v-for="(paper,index) in searchResult.list" :key="index">
             <div class="imgInfo">
               <i class="el-icon-picture-outline image"></i>
@@ -24,7 +120,7 @@
               </nuxt-link>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="communityContent">
           <div class="title">社区热点追踪</div>
@@ -33,7 +129,7 @@
               <div class="communityTitle">{{discuss.title}}</div>
               <div class="text">
                 {{discuss.content}}
-                <el-button @click="toggleShow(index)" v-if="!discuss.isFull" type="text">{{discuss.displayShort ? "阅读全文" : "收起全文"}}<i :class="discuss.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
+                <el-button style="padding: 0px" @click="toggleShow(index)" v-if="!discuss.isFull" type="text">{{discuss.displayShort ? "阅读全文" : "收起全文"}}<i :class="discuss.displayShort ? 'el-icon-caret-bottom' : 'el-icon-caret-top'" /></el-button>
               </div>
               <div class="link">
                 <el-button type="primary" size="mini" icon="el-icon-caret-top">赞同3.6万</el-button>
@@ -411,7 +507,23 @@ export default {
               height: 100px;
               overflow: hidden;
               text-overflow: ellipsis;
+              .link {
+                text-indent: 0px ;
+                padding-top: 10px;
+                font-size: 12px ;
+                display: flex;
+                display: -webkit-flex; /* Safari */
+                justify-content: flex-start ;
+                align-items: center ;
+                .time {
+                  color: rgb(136, 136, 136);
+                  padding-left: 10px ;
+                }
+              }
             }
+          }
+          .onLeftPadding {
+            padding-left: 0px ;
           }
         }
       }
@@ -443,6 +555,9 @@ export default {
             }
             .text {
               padding: 10px 0px ;
+              font-size: 14px;
+              line-height: 22px;
+              text-indent: 28px;
             }
             .link {
               font-size: 12px ;

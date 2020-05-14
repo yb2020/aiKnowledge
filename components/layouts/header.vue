@@ -43,6 +43,7 @@
             v-model="searchValue"
             style="width: 100%;"
             placeholder="搜索学术、作者、学科、机构等"
+            @keyup.enter.native="search"
             clearable
             >                
               <el-button slot="append" icon="el-icon-search" @click="search"></el-button>

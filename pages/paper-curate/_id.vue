@@ -43,9 +43,9 @@
         </div>
 
         <div class="infoTitle" :key="'infoTitle1'">
-          <h4>翻译&nbsp;&nbsp;<nuxt-link style="color: blue" :to="`/paper-curate/${paper.id}`"
+          <h4>翻译&nbsp;&nbsp;<nuxt-link style="color: blue" :to="`/paper/${paper.id}`"
             exact>
-            编辑
+            返回
           </nuxt-link></h4>
           
           <p style="text-indent: 28px ;" v-if="paper.ext && paper.ext.botTranslateSummary">
@@ -60,13 +60,44 @@
             <p><b>人工翻译</b></p>
             <p>{{paper.ext.translateSummary}}</p>
           </div>
+          <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.translateSummary">
+            <b>人工翻译</b>
+            {{paper.ext.translateSummary}}
+            <el-form ref="extForm.summaryForm" :model="extForm.summaryForm" label-width="0px" :rules="extForm.summaryFormRules" class="edit-ruleForm">
+              <el-row :gutter="24">
+                <el-col :span="20">
+                  <el-form-item :label-width="'0px'" prop="translateSummary" required>
+                      <el-input type="textarea" v-model="extForm.summaryForm.translateSummary" clearable></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="2" justify="center" align="bottom">
+                  <el-button type="primary" :loading="submitLoading" @click="submitTranslateForm">提交翻译</el-button>
+                </el-col>
+              </el-row>
+            </el-form>
+          </p>
         </div>
 
-        <div class="infoTitle" :key="'infoTitle2'" v-if="paper.ext && paper.ext.translateSummary">
+        <div class="infoTitle" :key="'infoTitle2'">
           <h4>阅读指引</h4>
-          <div>
+          <div v-if="paper.ext && paper.ext.translateSummary">
             <p>{{paper.ext.readingGuide}}</p>
           </div>
+          <p style="padding-top: 10px" v-if="paper.ext && !paper.ext.readingGuide">
+            {{paper.ext.readingGuide}}
+            <el-form ref="extForm.readingGuideForm" :model="extForm.readingGuideForm" label-width="0px" :rules="extForm.readingGuideFormRules" class="edit-ruleForm">
+              <el-row :gutter="24">
+                <el-col :span="20">
+                  <el-form-item :label-width="'0px'" prop="readingGuide" required>
+                      <el-input type="textarea" v-model="extForm.readingGuideForm.readingGuide" clearable></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="2" justify="center" align="bottom">
+                  <el-button type="primary" :loading="submitLoading" @click="submitReadingGuideForm">提交指引</el-button>
+                </el-col>
+              </el-row>
+            </el-form>
+          </p>
         </div>
 
         <div class="infoTitle">
