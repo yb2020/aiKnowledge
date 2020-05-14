@@ -173,6 +173,9 @@ module.exports = {
       src: "~/plugins/finally.js"
     },
     {
+      src: "~/plugins/route.js"
+    },
+    {
       src:'~plugins/element-ui',
       ssr: false
     }
