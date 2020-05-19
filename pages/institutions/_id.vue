@@ -140,7 +140,7 @@
                         <el-input v-model="form.editForm.title" clearable></el-input>
                       </el-form-item>
                       <el-form-item :label-width="'0px'" prop="content" required>
-                        <el-input type="textarea" v-model="form.editForm.content" clearable></el-input>
+                        <no-ssr><markdown v-model="form.editForm.content" style="height: 100%;" app-name="blog" /></no-ssr>
                       </el-form-item>
                     </el-col>
                     <el-col :span="2" justify="center" align="bottom">
@@ -173,11 +173,12 @@
 <script>
 import filterView from '~/components/detail/filter'
 import listView from '~/components/detail/list'
+import markdown from '~/components/markdown'
 
 
 export default {
 
-  name: 'keywords',
+  name: 'institutuionsDetail',
 
   transition: 'fade',
 
@@ -271,7 +272,7 @@ export default {
   },
 
   components: {
-    filterView, listView
+    filterView, listView, markdown
   },
 
   methods: {

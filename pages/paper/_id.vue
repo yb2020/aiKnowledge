@@ -169,6 +169,7 @@
                 <el-button style="float: right; padding: 3px 0" type="text">切换为时间排序</el-button> -->
               </div>
               <div class="formWapper">
+                
                 <el-form ref="form.editForm" :model="form.editForm" label-width="0px" :rules="form.editFormRules" class="edit-ruleForm">
                   <el-row :gutter="24">
                     <el-col :span="22">
@@ -176,7 +177,7 @@
                         <el-input v-model="form.editForm.title" clearable></el-input>
                       </el-form-item>
                       <el-form-item :label-width="'0px'" prop="content" required>
-                        <el-input type="textarea" v-model="form.editForm.content" clearable></el-input>
+                        <no-ssr><markdown v-model="form.editForm.content" style="height: 100%;" app-name="blog" /></no-ssr>
                       </el-form-item>
                     </el-col>
                     <el-col :span="2" justify="center" align="bottom">
@@ -184,6 +185,7 @@
                     </el-col>
                   </el-row>
                 </el-form>
+                
               </div>
             </el-card>
           </div>
@@ -214,6 +216,7 @@
 import articleView from '~/components/common/article'
 import filterView from '~/components/detail/filter'
 import listView from '~/components/detail/list'
+import markdown from '~/components/markdown'
 
 
 export default {
@@ -293,6 +296,10 @@ export default {
       activeName: 'review',
       activePaperName: 'summary',
       submitLoading: false,
+      handbook: '',
+      markdownOption: {
+
+      },
       currentPaper: {
 
       },
@@ -338,7 +345,7 @@ export default {
   },
 
   components: {
-    articleView, filterView, listView
+    articleView, filterView, listView, markdown
   },
 
   methods: {

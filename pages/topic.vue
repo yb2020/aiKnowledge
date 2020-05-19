@@ -102,7 +102,7 @@
                   <el-input v-model="form.editForm.title" clearable></el-input>
                 </el-form-item>
                 <el-form-item :label-width="'0px'" prop="content" required>
-                  <el-input type="textarea" v-model="form.editForm.content" clearable></el-input>
+                  <no-ssr><markdown v-model="form.editForm.content" style="height: 100%;" app-name="blog" /></no-ssr>
                 </el-form-item>
               </el-col>
               <el-col :span="2" justify="center" align="bottom">
@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import markdown from '~/components/markdown'
 
 export default {
   name: 'topic',
@@ -187,7 +188,7 @@ export default {
   fetch ({ store }) {
     return store.dispatch('topic/getTopics', { pageSize: 10 })
   },
-
+  components:{markdown},
   computed: {
     squareTopics() {
       return this.$store.state.topic.squareTopics
