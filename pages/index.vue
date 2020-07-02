@@ -283,6 +283,7 @@ export default {
 
   async fetch ({ store }) {
     let result1 = await store.dispatch('discuss/getDiscusses', { pageSize: 10 })
+    console.log(result1)
     let result2 = await store.dispatch('search/searchPaper', {pageSize: 3})
     return {
       result1,

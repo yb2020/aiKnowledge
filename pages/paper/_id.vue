@@ -34,7 +34,7 @@
           <div class="text">引用</div>
         </div>
 
-        <div class="infoTitle" :key="'infoTitle1'" v-if="paper.summary">
+        <div class="infoTitle" :key="'infoTitle'" v-if="paper.summary">
           <h4>摘要</h4>
           <p style="text-indent: 28px ;">
             {{paper.summary}}
@@ -42,7 +42,7 @@
           </p>
         </div>
 
-        <div class="infoTitle" :key="'infoTitle1'">
+        <div class="infoTitle" :key="'translateInfoTitle'">
           <h4>翻译&nbsp;&nbsp;<nuxt-link style="color: blue" :to="`/paper-curate/${paper.id}`"
             exact>
             编辑

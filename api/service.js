@@ -1,5 +1,5 @@
 import serviceApi from './axios'
-const serviceId = '/MICROSERVICE-APP-BLOG/blog'
+const serviceId = '/MICROSERVICE-APP-AIKNOWLEDGE/aiKnowledge'
 
 
 
